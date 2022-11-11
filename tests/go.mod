@@ -1,4 +1,4 @@
-module github.ibm.com/GoldenEye/module-template
+module github.ibm.com/GoldenEye/secrets-manager-private-cert-module
 
 go 1.19
 
