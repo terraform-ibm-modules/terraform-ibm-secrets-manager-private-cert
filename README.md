@@ -1,171 +1,85 @@
-<!-- BEGIN MODULE HOOK -->
 
-<!-- Update the title to match the module name and add a description -->
-# Terraform Modules Template Project
+# Secrets Manager Private Cert module
 <!-- UPDATE BADGES:
 1. Make sure that the badge link for the current status of the module is correct. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md.
 2. Update the "Build Status" badge to point to the travis pipeline for the module. Replace "module-template" in two places.
 3. Update the "latest release" badge to point to the new module. Replace "module-template" in two places.
 -->
-
-[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://github.ibm.com/GoldenEye/documentation/blob/master/status.md)
+[![Stable (Adopted)](https://img.shields.io/badge/Status-Stable%20(Adopted)-yellowgreen?style=plastic)](https://github.ibm.com/GoldenEye/documentation/blob/master/status.md)
 [![Build status](https://travis.ibm.com/GoldenEye/module-template.svg?token=3Ry6sEDNvWajQPuZHgTZ&branch=master)](https://travis.ibm.com/GoldenEye/module-template)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![latest release](https://shields-server.m03l6u0cqkx.eu-de.codeengine.appdomain.cloud/github/v/release/GoldenEye/module-template?logo=GitHub)](https://github.ibm.com/GoldenEye/module-template/releases/latest)
 
-<!-- Remove the content in this H2 heading after completing the steps -->
+This module creates a private certificate in an existing Secrets Manager instance that has a configured [Private Certificate Engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificates&interface=ui).
 
-## Submit a new module
+The module handles the following resource:
+- Secrets Manager private certificate
 
-:+1::tada: Thank you for taking the time to contribute! :tada::+1:
-
-This template repository exists to help you create Terraform modules for IBM Cloud.
-
-The default structure includes the following files:
-
-- `README.md`: A description of the module
-- `main.tf`: The logic for the module
-- `version.tf`: The required terraform and provider versions
-- `variables.tf`: The input variables for the module
-- `outputs.tf`: The values that are output from the module
-
-You can add other content to support what your module does and how it works. For example, you might add a `scripts/` directory that contains shell scripts that are run by a `local-exec` `null_resource` in the Terraform module.
-
-Follow this process to create and submit a GoldenEye Terraform module.
-### Before you begin
-
-If you have an idea for a new module, post about it in the [#project-goldeneye](https://ibm-cloudplatform.slack.com/archives/C02SDGCJAB1) Slack channel. The GoldenEye team can discuss with you how to collaborate and develop the module.
-
-### Create a repo from this repo template
-
-1.  Create a repository from this repository template by clicking `Use this template` in the upper right of the GitHub UI.
-&emsp;&emsp;&emsp;&emsp;<br>For more information about creating a repository from a template, see the [GitHub docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-1.  Select `GoldenEye` as the owner.
-1.  Enter a name for the module in format `<NAME>-module`, where `<NAME>` reflects the type of infrastructure that the module manages.
-&emsp;&emsp;&emsp;&emsp;<br>Use hyphens as delimiters for names with multiple words (for example, `VPC`-module).
-1.  Provide a short description of the module.
-&emsp;&emsp;&emsp;&emsp;<br>The description is displayed under the repository name on the [organization page](https://github.ibm.com/GoldenEye) and in the **About** section of the repository. Use the description to help users understand the purpose of your module. For more information, see [module names and descriptions](https://github.ibm.com/GoldenEye/documentation/blob/master/authoring-guidelines.md#module-names-and-descriptions) in the docs.
-
-### Clone the repo and set up your development environment
-
-Locally clone the new repository and set up your development environment by completing the tasks in [Local development setup](https://github.ibm.com/GoldenEye/documentation/blob/master/local-dev-setup.md) in the project documentation.
-### Set up Travis
-
-Post a request in the [#project-goldeneye](https://ibm-cloudplatform.slack.com/archives/C02SDGCJAB1) Slack channel to have your repo added to Travis. For more information, see [Setting up Travis for a new repo](https://github.ibm.com/GoldenEye/documentation/blob/master/travis-setup.md) in the GoldenEye docs.
-
-### Update the repo name and description in source control
-
-To help make sure that the repo name and description are not changed except through pull requests, they are defined in the `settings.yml` file.
-
-Check to make sure that values are uncommented and correct:
-
-1.  Open the [settings.yml](.github/settings.yml) file.
-1.  If not already updated, uncomment the `name` and `description` properties and set the values to what you specified when you requested the repo.
-
-### Update the Terraform files
-
-Implement the logic for your module by updating the `main.tf`, `version.tf`, `variables.tf`, and `outputs.tf` Terraform files. For more information, see [Creating Terraform on IBM Cloud templates](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-create-tf-config).
-
-### Create examples and tests
-
-Add one or more examples in the `examples` directory that consume your new module, and configure tests for them in the `tests` directory. For more information about tests, see [Tests](https://github.ibm.com/GoldenEye/documentation/blob/master/tests.md).
-
-### Update the content in the readme file
-
-After you implement the logic for your module and create examples and tests, update this readme file in your repository by following these steps:
-
-1.  Update the title heading and add a description about your module.
-1.  Update the badge links.
-1.  Remove all the content in this H2 heading section.
-1.  Complete the [Usage](#usage) and [Required IAM access policies](#required-iam-access-policies) sections. The [Examples](#examples) and [Requirements](#requirements) section are populated by a pre-commit hook.
-
-### Commit your code and submit your module for review
-
-1.  Before you commit any code, review [Contributing to Project GoldenEye](https://github.ibm.com/GoldenEye/documentation/blob/master/contributing.md) in the project documentation.
-1.  Create a pull request for review.
-
-### Post-merge steps
-
-After the first PR for your module is merged, follow these post-merge steps:
-
-1.  Create a PR to enable the upgrade test by removing the `t.Skip` line in `tests/pr_test.go`.
-1.  Add your new module to the [module list](https://github.ibm.com/GoldenEye/documentation/blob/master/modules-list.md).
-1.  Post a request in the [#project-goldeneye](https://ibm-cloudplatform.slack.com/archives/C02SDGCJAB1) Slack channel to have your module added to the continuous testing pipeline. For more information about the steps, see [Adding a new module to Goldeneye Continuous Testing pipeline](https://github.ibm.com/GoldenEye/operations/blob/master/continuous-testing/README.md).
-1.  Post a request in the [#project-goldeneye](https://ibm-cloudplatform.slack.com/archives/C02SDGCJAB1) Slack channel to have your module published to the IBM Cloud catalog. For more information about the steps, see [Add a module to the IBM Cloud catalog](https://github.ibm.com/GoldenEye/documentation/blob/master/catalog.md).
-
-<!-- Remove the content in this previous H2 heading -->
+The module uses the Terraform provider for [generic REST APIs](https://github.com/Mastercard/terraform-provider-restapi) because of limitations with the IBM Cloud provider. The limitations are tracked in GitHub at https://github.com/IBM-Cloud/terraform-provider-ibm/issues/2054.
 
 ## Usage
 
-<!--
-Add an example of the use of the module in the following code block.
-
-Use real values instead of "var.<var_name>" or other placeholder values
-unless real values don't help users know what to change.
--->
-
-```hcl
+Make sure that you set the following environment variable to hide sensitive data before you run Terraform operations (for example, `plan`, `apply`, `destroy`):
 
 ```
-<!--
-Include the following 'Controls' section if the module implements NIST controls
-Remove the 'section if the module does not implement controls
--->
+API_DATA_IS_SENSITIVE=true
+```
+For more information, see the [provider documentation](https://github.com/Mastercard/terraform-provider-restapi#usage) for generic REST APIs.
 
-<!-- GoldenEye core team only
-## Compliance and security
+```hcl
+# Replace "master" with a GIT release version to lock into a specific release
+module "secrets_manager_private_certificate" {
+  source     = "git::ssh://github.ibm.com/GoldenEye/secrets-manager-private-cert-module?ref=master"
 
-This module implements the following NIST controls. For more information about how this module implements the controls in the following list, see [NIST controls](docs/controls.md).
+  cert_name             = "example-private-cert"
+  cert_description      = "an example private cert"
+  cert_secrets_group_id = "the secret group ID to place the cert"
+  cert_template         = "name of the cert template to use"
+  cert_common_name      = "goldeneye.appdomain.cloud"
 
-| Profile | Category | ID       | Description |
-|---------|----------|----------|-------------|
-| NIST    | SC-7     | SC-7(3)  | Limit the number of external network connections to the information system. |
+  secrets_manager_guid   = module.secrets_manager.secrets_manager_guid
+  secrets_manager_region = var.region
+}
+```
 
-The 'Profile' and 'ID' columns are used by the IBM Cloud catalog to import
-the controls into the catalog page.
+ In addition to the regular Rest API provider block, this module requires a second Rest API provider configuration block in the Terraform file that calls the API. The block needs an `alias` that is set to `nocontent` as shown in the following example:
 
-In the example here, remove the SC-7 row and include a row for each control
-that the module implements.
+```
+provider "restapi" {
+  alias                 = "nocontent"
+  uri                   = "https:"
+  write_returns_object  = false
+  create_returns_object = false
+  debug                 = false # set to true to show detailed logs, but use carefully as it might print sensitive values.
+  headers = {
+    Accept        = "application/json"
+    Authorization = data.ibm_iam_auth_token.token_data.iam_access_token
+    Content-Type  = "application/json"
+  }
+}
+```
 
-Include the control enhancement in the ID column ('SC-7(3)' in this example).
-
-Identify how the module is complying with the controls. Summarize the
-rationale or implementation in the 'Description' column.
-
-For details about the controls, see the NIST Risk Management Framework page at
-https://csrc.nist.gov/Projects/risk-management/sp800-53-controls/release-search#/controls?version=4.0.
--->
+ This configuration block is added to the `providers.tf` file in the [example](#examples) that is available in this module.
 
 ## Required IAM access policies
 
-<!-- PERMISSIONS REQUIRED TO RUN MODULE
-If this module requires permissions, uncomment the following block and update
-the sample permissions, following the format.
-Replace the sample Account and IBM Cloud service names and roles with the
-information in the console at
-Manage > Access (IAM) > Access groups > Access policies.
--->
-
-<!--
 You need the following permissions to run this module.
 
 - Account Management
-    - **Sample Account Service** service
-        - `Editor` platform access
-        - `Manager` service access
-    - IAM Services
-        - **Sample Cloud Service** service
-            - `Administrator` platform access
--->
+  - **IAM Access Groups** service
+      - `Editor` platform access
+  - **IAM Identity** service
+      - `Operator` platform access
+  - **Resource Group** service
+      - `Viewer` platform access
+- IAM Services
+  - **Secrets Manager** service
+      - `Administrator` platform access
+      - `Manager` service access
 
-<!-- NO PERMISSIONS FOR MODULE
-If no permissions are required for the module, uncomment the following
-statement instead the previous block.
--->
+For more information about the access you need to run all the GoldenEye modules, see [GoldenEye IAM permissions](https://github.ibm.com/GoldenEye/documentation/blob/master/goldeneye-iam-permissions.md).
 
-<!-- No permissions are needed to run this module.-->
-<!-- END MODULE HOOK -->
 <!-- BEGIN EXAMPLES HOOK -->
 ## Examples
 
