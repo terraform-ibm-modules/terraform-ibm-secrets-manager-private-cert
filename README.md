@@ -170,8 +170,6 @@ statement instead the previous block.
 ## Examples
 
 - [ Default example](examples/default)
-- [ Example that uses existing resources](examples/existing-resources)
-- [ Non default example](examples/non-default)
 <!-- END EXAMPLES HOOK -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -179,6 +177,7 @@ statement instead the previous block.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.17.0 |
 
 ## Modules
 
@@ -186,15 +185,32 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [restapi_object.secrets_manager_private_certificate](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | The certificates alternate names (comma separated) | `string` | `""` | no |
+| <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | The certificates common name | `string` | n/a | yes |
+| <a name="input_cert_description"></a> [cert\_description](#input\_cert\_description) | The certificates description | `string` | `""` | no |
+| <a name="input_cert_ip_sans"></a> [cert\_ip\_sans](#input\_cert\_ip\_sans) | The certificates IP sans | `string` | `""` | no |
+| <a name="input_cert_name"></a> [cert\_name](#input\_cert\_name) | The name of the certificate in Secrets Manager | `string` | n/a | yes |
+| <a name="input_cert_secrets_group_id"></a> [cert\_secrets\_group\_id](#input\_cert\_secrets\_group\_id) | The id of Secrets Manager secret group to store the certificate in | `string` | `""` | no |
+| <a name="input_cert_template"></a> [cert\_template](#input\_cert\_template) | The name of the certificate template to use | `string` | `""` | no |
+| <a name="input_cert_ttl"></a> [cert\_ttl](#input\_cert\_ttl) | The certificates ttl | `string` | `""` | no |
+| <a name="input_cert_uri_sans"></a> [cert\_uri\_sans](#input\_cert\_uri\_sans) | The certificates URI sans | `string` | `""` | no |
+| <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | The Secrets Manager GUID | `string` | n/a | yes |
+| <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | The region the Secrets Manager instance is in | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | The service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Private certificates secrets manager secret ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGIN CONTRIBUTING HOOK -->
 

@@ -1,12 +1,166 @@
 {
   "path": ".",
-  "variables": {},
-  "outputs": {},
+  "variables": {
+    "cert_alt_names": {
+      "name": "cert_alt_names",
+      "type": "string",
+      "description": "The certificates alternate names (comma separated)",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 39
+      }
+    },
+    "cert_common_name": {
+      "name": "cert_common_name",
+      "type": "string",
+      "description": "The certificates common name",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 34
+      }
+    },
+    "cert_description": {
+      "name": "cert_description",
+      "type": "string",
+      "description": "The certificates description",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 16
+      }
+    },
+    "cert_ip_sans": {
+      "name": "cert_ip_sans",
+      "type": "string",
+      "description": "The certificates IP sans",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 45
+      }
+    },
+    "cert_name": {
+      "name": "cert_name",
+      "type": "string",
+      "description": "The name of the certificate in Secrets Manager",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 11
+      }
+    },
+    "cert_secrets_group_id": {
+      "name": "cert_secrets_group_id",
+      "type": "string",
+      "description": "The id of Secrets Manager secret group to store the certificate in",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 22
+      }
+    },
+    "cert_template": {
+      "name": "cert_template",
+      "type": "string",
+      "description": "The name of the certificate template to use",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 28
+      }
+    },
+    "cert_ttl": {
+      "name": "cert_ttl",
+      "type": "string",
+      "description": "The certificates ttl",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 57
+      }
+    },
+    "cert_uri_sans": {
+      "name": "cert_uri_sans",
+      "type": "string",
+      "description": "The certificates URI sans",
+      "default": "",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 51
+      }
+    },
+    "secrets_manager_guid": {
+      "name": "secrets_manager_guid",
+      "type": "string",
+      "description": "The Secrets Manager GUID",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 67
+      }
+    },
+    "secrets_manager_region": {
+      "name": "secrets_manager_region",
+      "type": "string",
+      "description": "The region the Secrets Manager instance is in",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 72
+      }
+    },
+    "service_endpoints": {
+      "name": "service_endpoints",
+      "type": "string",
+      "description": "The service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`",
+      "default": "public",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 77
+      }
+    }
+  },
+  "outputs": {
+    "secret_id": {
+      "name": "secret_id",
+      "description": "Private certificates secrets manager secret ID",
+      "value": "restapi_object.secrets_manager_private_certificate.id",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 5
+      }
+    }
+  },
   "required_core": [
     "\u003e= 1.0.0"
   ],
-  "required_providers": {},
-  "managed_resources": {},
+  "required_providers": {
+    "restapi": {
+      "source": "Mastercard/restapi",
+      "version_constraints": [
+        "\u003e= 1.17.0"
+      ]
+    }
+  },
+  "managed_resources": {
+    "restapi_object.secrets_manager_private_certificate": {
+      "mode": "managed",
+      "type": "restapi_object",
+      "name": "secrets_manager_private_certificate",
+      "attributes": {
+        "data": "cert_name"
+      },
+      "provider": {
+        "name": "restapi"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 6
+      }
+    }
+  },
   "data_resources": {},
   "module_calls": {}
 }

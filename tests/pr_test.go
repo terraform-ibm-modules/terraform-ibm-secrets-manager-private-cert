@@ -18,7 +18,7 @@ func TestRunDefaultExample(t *testing.T) {
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "mod-template",
+		Prefix:        "sm-private-cert",
 		ResourceGroup: resourceGroup,
 	})
 
@@ -36,7 +36,7 @@ func TestRunUpgradeExample(t *testing.T) {
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "mod-template-upg",
+		Prefix:        "sm-private-cert-upg",
 		ResourceGroup: resourceGroup,
 	})
 
