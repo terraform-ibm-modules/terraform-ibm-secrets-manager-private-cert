@@ -1,4 +1,3 @@
-
 # Secrets Manager Private Cert module
 <!-- UPDATE BADGES:
 1. Make sure that the badge link for the current status of the module is correct. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md.
