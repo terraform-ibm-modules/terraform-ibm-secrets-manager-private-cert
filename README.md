@@ -90,7 +90,7 @@ For more information about the access you need to run all the GoldenEye modules,
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.17.0 |
+| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.18.0 |
 
 ## Modules
 

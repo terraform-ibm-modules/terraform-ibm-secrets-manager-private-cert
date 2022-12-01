@@ -140,7 +140,7 @@
     "restapi": {
       "source": "Mastercard/restapi",
       "version_constraints": [
-        "\u003e= 1.17.0"
+        "\u003e= 1.18.0"
       ]
     }
   },
