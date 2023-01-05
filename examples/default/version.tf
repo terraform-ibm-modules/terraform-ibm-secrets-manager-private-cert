@@ -9,7 +9,7 @@ terraform {
     # The ibm provider is not actually required by the module itself, just this example, so OK to use ">=" here instead of locking into a version
     ibm = {
       source  = "IBM-Cloud/ibm"
-      version = "1.48.0"
+      version = "1.49.0"
     }
   }
 }
