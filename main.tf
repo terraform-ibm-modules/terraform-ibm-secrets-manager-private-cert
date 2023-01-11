@@ -31,3 +31,9 @@ resource "restapi_object" "secrets_manager_private_certificate" {
   id_attribute  = "resources/0/id"
   force_new     = ["name", "description", "secret_group_id", "certificate_template", "common_name", "alt_names", "ip_sans", "uri_sans", "ttl", "rotation", "resources"]
 }
+
+data "ibm_secrets_manager_secret" "secrets_manager_secret" {
+  instance_id = var.secrets_manager_guid
+  secret_type = "private_cert"
+  secret_id   = restapi_object.secrets_manager_private_certificate.id
+}

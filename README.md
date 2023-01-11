@@ -85,6 +85,7 @@ For more information about the access you need to run all the GoldenEye modules,
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.49.0 |
 | <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.18.0 |
 
 ## Modules
@@ -96,6 +97,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [restapi_object.secrets_manager_private_certificate](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
+| [ibm_secrets_manager_secret.secrets_manager_secret](https://registry.terraform.io/providers/ibm-cloud/ibm/latest/docs/data-sources/secrets_manager_secret) | data source |
 
 ## Inputs
 
@@ -118,6 +120,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Private certificates secrets manager secret CRN |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Private certificates secrets manager secret ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGIN CONTRIBUTING HOOK -->

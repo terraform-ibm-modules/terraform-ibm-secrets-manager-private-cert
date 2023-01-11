@@ -43,5 +43,5 @@ variable "resource_group" {
 variable "prefix" {
   type        = string
   description = "Prefix to be added to created resources"
-  default     = "private-cert-test-alex"
+  default     = "private-cert"
 }

@@ -46,6 +46,9 @@
       "type": "string",
       "description": "The name of the certificate in Secrets Manager",
       "required": true,
+      "source": [
+        "restapi_object.secrets_manager_private_certificate.data"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 11
@@ -96,10 +99,17 @@
       "type": "string",
       "description": "The Secrets Manager GUID",
       "required": true,
+      "source": [
+        "data.ibm_secrets_manager_secret.secrets_manager_secret.instance_id"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 67
-      }
+      },
+      "cloud_data_type": "resource_instance",
+      "cloud_data_range": [
+        "service:secrets-manager"
+      ]
     },
     "secrets_manager_region": {
       "name": "secrets_manager_region",
@@ -123,6 +133,17 @@
     }
   },
   "outputs": {
+    "secret_crn": {
+      "name": "secret_crn",
+      "description": "Private certificates secrets manager secret CRN",
+      "value": "data.ibm_secrets_manager_secret.secrets_manager_secret.crn",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 11
+      },
+      "type": "TypeString",
+      "cloud_data_type": "crn"
+    },
     "secret_id": {
       "name": "secret_id",
       "description": "Private certificates secrets manager secret ID",
@@ -137,6 +158,12 @@
     "\u003e= 1.0.0"
   ],
   "required_providers": {
+    "ibm": {
+      "source": "ibm-cloud/ibm",
+      "version_constraints": [
+        "\u003e= 1.49.0"
+      ]
+    },
     "restapi": {
       "source": "Mastercard/restapi",
       "version_constraints": [
@@ -161,6 +188,22 @@
       }
     }
   },
-  "data_resources": {},
+  "data_resources": {
+    "data.ibm_secrets_manager_secret.secrets_manager_secret": {
+      "mode": "data",
+      "type": "ibm_secrets_manager_secret",
+      "name": "secrets_manager_secret",
+      "attributes": {
+        "instance_id": "secrets_manager_guid"
+      },
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 35
+      }
+    }
+  },
   "module_calls": {}
 }

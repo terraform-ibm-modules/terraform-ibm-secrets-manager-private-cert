@@ -7,3 +7,8 @@ output "secret_id" {
   value       = module.secrets_manager_private_certificate.secret_id
   sensitive   = false
 }
+
+output "secret_crn" {
+  description = "Private certificates secrets manager secret CRN"
+  value       = module.secrets_manager_private_certificate.secret_crn
+}
