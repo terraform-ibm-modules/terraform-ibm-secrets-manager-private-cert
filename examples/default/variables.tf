@@ -45,3 +45,15 @@ variable "prefix" {
   description = "Prefix to be added to created resources"
   default     = "private-cert"
 }
+
+variable "existing_sm_instance_guid" {
+  type        = string
+  description = "Existing Secrets Manager GUID. The existing Secret Manager instance must have private certificate engine configured. If not provided an new instance will be provisioned."
+  default     = null
+}
+
+variable "existing_sm_instance_region" {
+  type        = string
+  description = "Required if value is passed into var.existing_sm_instance_guid"
+  default     = null
+}
