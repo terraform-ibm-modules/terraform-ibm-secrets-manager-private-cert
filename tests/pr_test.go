@@ -15,8 +15,8 @@ const secretsManagerGuid = "8ad00d9f-2844-43d6-bdac-194097c3d2eb"
 const secretsManagerRegion = "us-south"
 const certificateTemplateName = "geretain-cert-template"
 
+// To avoid race condition while creating certs, these tests execution is sequential
 func TestRunDefaultExample(t *testing.T) {
-	t.Parallel()
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:       t,
@@ -36,7 +36,6 @@ func TestRunDefaultExample(t *testing.T) {
 }
 
 func TestRunUpgradeExample(t *testing.T) {
-	t.Parallel()
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:       t,
