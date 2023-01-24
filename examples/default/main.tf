@@ -15,7 +15,7 @@ module "secrets_manager" {
   providers = {
     restapi.nocontent = restapi.nocontent
   }
-  source               = "git::https://github.ibm.com/GoldenEye/secrets-manager-module.git?ref=2.6.11"
+  source               = "git::https://github.ibm.com/GoldenEye/secrets-manager-module.git?ref=2.6.12"
   resource_group_id    = module.resource_group.resource_group_id
   region               = local.sm_region
   secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
