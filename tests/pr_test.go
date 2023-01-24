@@ -2,33 +2,74 @@
 package test
 
 import (
+	"log"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
+	"gopkg.in/yaml.v3"
 )
 
-// Use existing resource group
+// Resource groups are maintained https://github.ibm.com/GoldenEye/ge-dev-account-management
 const resourceGroup = "geretain-test-resources"
-const defaultExampleTerraformDir = "examples/default"
-const secretsManagerGuid = "8ad00d9f-2844-43d6-bdac-194097c3d2eb"
-const secretsManagerRegion = "us-south"
-const certificateTemplateName = "geretain-cert-template"
+const terraformDir = "examples/default"
 
-// To avoid race condition while creating certs, these tests execution is sequential
-func TestRunDefaultExample(t *testing.T) {
+// Define a struct with fields that match the structure of the YAML data
+const yamlLocation = "../common-dev-assets/common-go-assets/common-permanent-resources.yaml"
+
+type Config struct {
+	SmGuid                  string `yaml:"secretsManagerGuid"`
+	SmRegion                string `yaml:"secretsManagerRegion"`
+	CertificateTemplateName string `yaml:"privateCertTemplateName"`
+}
+
+var smGuid string
+var smRegion string
+var certificateTemplateName string
+
+// TestMain will be run before any parallel tests, used to read data from yaml for use with tests
+func TestMain(m *testing.M) {
+	// Read the YAML file contents
+	data, err := os.ReadFile(yamlLocation)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Create a struct to hold the YAML data
+	var config Config
+	// Unmarshal the YAML data into the struct
+	err = yaml.Unmarshal(data, &config)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// Parse the SM guid and region from data
+	smGuid = config.SmGuid
+	smRegion = config.SmRegion
+	certificateTemplateName = config.CertificateTemplateName
+	os.Exit(m.Run())
+}
+
+func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:       t,
-		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "sm-private-cert",
+		TerraformDir:  dir,
+		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
 		TerraformVars: map[string]interface{}{
-			"existing_sm_instance_guid":   secretsManagerGuid,
-			"existing_sm_instance_region": secretsManagerRegion,
+			"existing_sm_instance_guid":   smGuid,
+			"existing_sm_instance_region": smRegion,
 			"certificate_template_name":   certificateTemplateName,
 		},
 	})
+
+	return options
+}
+
+func TestRunDefaultExample(t *testing.T) {
+	t.Parallel()
+
+	options := setupOptions(t, "sm-private-cert", terraformDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
@@ -36,18 +77,9 @@ func TestRunDefaultExample(t *testing.T) {
 }
 
 func TestRunUpgradeExample(t *testing.T) {
+	t.Parallel()
 
-	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "sm-private-cert-upg",
-		ResourceGroup: resourceGroup,
-		TerraformVars: map[string]interface{}{
-			"existing_sm_instance_guid":   secretsManagerGuid,
-			"existing_sm_instance_region": secretsManagerRegion,
-			"certificate_template_name":   certificateTemplateName,
-		},
-	})
+	options := setupOptions(t, "sm-private-cert-upg", terraformDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {

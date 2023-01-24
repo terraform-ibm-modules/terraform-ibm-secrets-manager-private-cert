@@ -45,7 +45,7 @@ module "secrets_manager_private_certificate" {
   source     = "../.."
   depends_on = [module.private_secret_engine]
 
-  cert_name             = "example-private-cert"
+  cert_name             = "${var.prefix}-example-private-cert"
   cert_description      = "an example private cert"
   cert_secrets_group_id = module.secrets_manager_secret_group.secret_group_id
   cert_template         = var.certificate_template_name
