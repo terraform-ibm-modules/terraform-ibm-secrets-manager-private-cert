@@ -10,8 +10,6 @@ This module creates a private certificate in an existing Secrets Manager instanc
 The module handles the following resource:
 - Secrets Manager private certificate
 
-The module uses the Terraform provider for [generic REST APIs](https://github.com/Mastercard/terraform-provider-restapi) because of limitations with the IBM Cloud provider. The limitations are tracked in GitHub at https://github.com/IBM-Cloud/terraform-provider-ibm/issues/2054.
-
 ## Usage
 
 Make sure that you set the following environment variable to hide sensitive data before you run Terraform operations (for example, `plan`, `apply`, `destroy`):
@@ -19,7 +17,6 @@ Make sure that you set the following environment variable to hide sensitive data
 ```
 API_DATA_IS_SENSITIVE=true
 ```
-For more information, see the [provider documentation](https://github.com/Mastercard/terraform-provider-restapi#usage) for generic REST APIs.
 
 ```hcl
 # Replace "master" with a GIT release version to lock into a specific release
@@ -36,25 +33,6 @@ module "secrets_manager_private_certificate" {
   secrets_manager_region = var.region
 }
 ```
-
- In addition to the regular Rest API provider block, this module requires a second Rest API provider configuration block in the Terraform file that calls the API. The block needs an `alias` that is set to `nocontent` as shown in the following example:
-
-```
-provider "restapi" {
-  alias                 = "nocontent"
-  uri                   = "https:"
-  write_returns_object  = false
-  create_returns_object = false
-  debug                 = false # set to true to show detailed logs, but use carefully as it might print sensitive values.
-  headers = {
-    Accept        = "application/json"
-    Authorization = data.ibm_iam_auth_token.token_data.iam_access_token
-    Content-Type  = "application/json"
-  }
-}
-```
-
- This configuration block is added to the `providers.tf` file in the [example](#examples) that is available in this module.
 
 ## Required IAM access policies
 
@@ -84,9 +62,8 @@ For more information about the access you need to run all the GoldenEye modules,
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.49.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.18.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.51.0 |
 
 ## Modules
 
@@ -96,25 +73,33 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [restapi_object.secrets_manager_private_certificate](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
-| [ibm_secrets_manager_secret.secrets_manager_secret](https://registry.terraform.io/providers/ibm-cloud/ibm/latest/docs/data-sources/secrets_manager_secret) | data source |
+| [ibm_sm_private_certificate.secrets_manager_private_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | The certificates alternate names (comma separated) | `string` | `""` | no |
-| <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | The certificates common name | `string` | n/a | yes |
-| <a name="input_cert_description"></a> [cert\_description](#input\_cert\_description) | The certificates description | `string` | `""` | no |
-| <a name="input_cert_ip_sans"></a> [cert\_ip\_sans](#input\_cert\_ip\_sans) | The certificates IP sans | `string` | `""` | no |
-| <a name="input_cert_name"></a> [cert\_name](#input\_cert\_name) | The name of the certificate in Secrets Manager | `string` | n/a | yes |
-| <a name="input_cert_secrets_group_id"></a> [cert\_secrets\_group\_id](#input\_cert\_secrets\_group\_id) | The id of Secrets Manager secret group to store the certificate in | `string` | `""` | no |
-| <a name="input_cert_template"></a> [cert\_template](#input\_cert\_template) | The name of the certificate template to use | `string` | `""` | no |
-| <a name="input_cert_ttl"></a> [cert\_ttl](#input\_cert\_ttl) | The certificates ttl | `string` | `""` | no |
-| <a name="input_cert_uri_sans"></a> [cert\_uri\_sans](#input\_cert\_uri\_sans) | The certificates URI sans | `string` | `""` | no |
-| <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | The Secrets Manager GUID | `string` | n/a | yes |
-| <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | The region the Secrets Manager instance is in | `string` | n/a | yes |
-| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | The service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
+| <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | Optional, Alternate names for the certificate to be created | `list(string)` | `null` | no |
+| <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | Fully qualified domain name or host domain name for the certificate to be created | `string` | n/a | yes |
+| <a name="input_cert_csr"></a> [cert\_csr](#input\_cert\_csr) | Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally | `string` | `null` | no |
+| <a name="input_cert_custom_metadata"></a> [cert\_custom\_metadata](#input\_cert\_custom\_metadata) | Optional, Custom metadata for the certificate to be created | `map(string)` | <pre>{<br>  "collection_total": 1,<br>  "collection_type": "application/vnd.ibm.secrets-manager.secret+json"<br>}</pre> | no |
+| <a name="input_cert_description"></a> [cert\_description](#input\_cert\_description) | Optional, Extended description of certificate to be created. To protect privacy, do not use personal data, such as name or location, as a description for certificate | `string` | `null` | no |
+| <a name="input_cert_ip_sans"></a> [cert\_ip\_sans](#input\_cert\_ip\_sans) | Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
+| <a name="input_cert_labels"></a> [cert\_labels](#input\_cert\_labels) | Optional, Labels for the certificate to be created | `list(string)` | `[]` | no |
+| <a name="input_cert_name"></a> [cert\_name](#input\_cert\_name) | Name of the certificate to be created in Secrets Manager | `string` | n/a | yes |
+| <a name="input_cert_other_sans"></a> [cert\_other\_sans](#input\_cert\_other\_sans) | Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed\_other\_sans' field in the associated certificate template | `list(string)` | `[]` | no |
+| <a name="input_cert_rotation"></a> [cert\_rotation](#input\_cert\_rotation) | Optional, Rotation policy for the certificate to be created | <pre>object({<br>    auto_rotate = optional(bool)<br>    interval    = optional(number)<br>    unit        = optional(string)<br>  })</pre> | <pre>{<br>  "auto_rotate": true,<br>  "interval": 1,<br>  "unit": "month"<br>}</pre> | no |
+| <a name="input_cert_secrets_group_id"></a> [cert\_secrets\_group\_id](#input\_cert\_secrets\_group\_id) | Optional, Id of Secrets Manager secret group to store the certificate in | `string` | `"default"` | no |
+| <a name="input_cert_template"></a> [cert\_template](#input\_cert\_template) | Name of the certificate template to use | `string` | n/a | yes |
+| <a name="input_cert_ttl"></a> [cert\_ttl](#input\_cert\_ttl) | Optional, Time-to-live (TTL) to assign to a private certificate | `string` | `null` | no |
+| <a name="input_cert_uri_sans"></a> [cert\_uri\_sans](#input\_cert\_uri\_sans) | Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
+| <a name="input_cert_version_custom_metadata"></a> [cert\_version\_custom\_metadata](#input\_cert\_version\_custom\_metadata) | Optional, Custom version metadata for the certificate to be created | `map(string)` | `{}` | no |
+| <a name="input_exclude_cn_from_sans"></a> [exclude\_cn\_from\_sans](#input\_exclude\_cn\_from\_sans) | Optional, Controls whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply | `bool` | `false` | no |
+| <a name="input_private_key_format"></a> [private\_key\_format](#input\_private\_key\_format) | Optional, Format of the generated private key | `string` | `"der"` | no |
+| <a name="input_return_format"></a> [return\_format](#input\_return\_format) | Optional, Format of the returned data | `string` | `"pem"` | no |
+| <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | Secrets Manager GUID | `string` | n/a | yes |
+| <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | Region the Secrets Manager instance is in | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 
 ## Outputs
 
