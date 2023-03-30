@@ -12,12 +12,6 @@ The module handles the following resource:
 
 ## Usage
 
-Make sure that you set the following environment variable to hide sensitive data before you run Terraform operations (for example, `plan`, `apply`, `destroy`):
-
-```
-API_DATA_IS_SENSITIVE=true
-```
-
 ```hcl
 # Replace "master" with a GIT release version to lock into a specific release
 module "secrets_manager_private_certificate" {
