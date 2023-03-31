@@ -30,7 +30,7 @@ module "secrets_manager_secret_group" {
 
 module "private_secret_engine" {
   count                     = var.existing_sm_instance_guid == null ? 1 : 0
-  source                    = "git::https://github.ibm.com/GoldenEye/secrets-manager-private-cert-engine-module.git?ref=2.0.0"
+  source                    = "git::https://github.ibm.com/GoldenEye/secrets-manager-private-cert-engine-module.git?ref=2.1.0"
   secrets_manager_guid      = local.sm_guid
   region                    = local.sm_region
   root_ca_name              = var.root_ca_name
