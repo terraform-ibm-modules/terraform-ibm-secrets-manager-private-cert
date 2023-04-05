@@ -98,6 +98,7 @@
         "filename": "variables.tf",
         "line": 132
       },
+      "computed": true,
       "elem": {
         "type": "TypeString"
       }
