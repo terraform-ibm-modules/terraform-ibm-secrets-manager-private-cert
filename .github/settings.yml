@@ -10,8 +10,6 @@ _extends: repo-settings:.github/common-settings-v2.yml
 # repo-specific settings
 #
 repository:
-  # See https://github.ibm.com/GoldenEye/documentation/blob/master/authoring-guidelines?id=module-names-and-descriptions
-
   # By changing this field, you rename the repository.
 
   name: "terraform-ibm-secrets-manager-private-cert"
