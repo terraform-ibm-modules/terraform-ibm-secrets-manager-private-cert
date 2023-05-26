@@ -1,139 +1,51 @@
-<!-- BEGIN MODULE HOOK -->
-
-<!-- Update the title to match the module name and add a description -->
-# Terraform Modules Template Project
-<!-- UPDATE BADGE: Update the link for the following badge-->
-[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
-[![Build status](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-module-template?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/releases/latest)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+# Secrets Manager Private Cert module
+[![Stable (Adopted)](https://img.shields.io/badge/Status-Stable%20(Adopted)-yellowgreen?style=plastic)](https://github.ibm.com/GoldenEye/documentation/blob/master/status.md)
+[![CI](https://img.shields.io/badge/CI-Toolchain%20Tekton%20Pipeline-3662FF?logo=ibm)](https://cloud.ibm.com/devops/toolchains/c3916535-165a-4275-9b1f-c58575839951?env_id=ibm:yp:us-south)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![latest release](https://shields-server.m03l6u0cqkx.eu-de.codeengine.appdomain.cloud/github/v/release/GoldenEye/module-template?logo=GitHub)](https://github.ibm.com/GoldenEye/module-template/releases/latest)
 
-<!-- Remove the content in this H2 heading after completing the steps -->
+This module creates a private certificate in an existing Secrets Manager instance that has a configured [Private Certificate Engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificates&interface=ui).
 
-## Submit a new module
-
-:+1::tada: Thank you for taking the time to contribute! :tada::+1:
-
-This template repository exists to help you create Terraform modules for IBM Cloud.
-
-The default structure includes the following files:
-
-- `README.md`: A description of the module
-- `main.tf`: The logic for the module
-- `version.tf`: The required terraform and provider versions
-- `variables.tf`: The input variables for the module
-- `outputs.tf`: The values that are output from the module
-For more information, see [Module structure](https://terraform-ibm-modules.github.io/documentation/#/module-structure) in the project documentation.
-
-You can add other content to support what your module does and how it works. For example, you might add a `scripts/` directory that contains shell scripts that are run by a `local-exec` `null_resource` in the Terraform module.
-
-Follow this process to create and submit a Terraform module.
-
-### Create a repo from this repo template
-
-1.  Create a repository from this repository template by clicking `Use this template` in the upper right of the GitHub UI.
-&emsp;&emsp;&emsp;&emsp;<br>For more information about creating a repository from a template, see the [GitHub docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-1.  Select `terraform-ibm-modules` as the owner.
-1.  Enter a name for the module in format `terraform-ibm-<NAME>`, where `<NAME>` reflects the type of infrastructure that the module manages.
-&emsp;&emsp;&emsp;&emsp;<br>Use hyphens as delimiters for names with multiple words (for example, terraform-ibm-`activity-tracker`).
-1.  Provide a short description of the module.
-&emsp;&emsp;&emsp;&emsp;<br>The description is displayed under the repository name on the [organization page](https://github.com/terraform-ibm-modules) and in the **About** section of the repository. Use the description to help users understand the purpose of your module. For more information, see [module names and descriptions](https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions) in the docs.
-
-### Clone the repo and set up your development environment
-
-Locally clone the new repository and set up your development environment by completing the tasks in [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
-
-### Update the repo name and description in source control
-
-To help make sure that the repo name and description are not changed except through pull requests, they are defined in the `settings.yml` file.
-
-Check to make sure that values are uncommented and correct:
-
-1.  Open the [settings.yml](.github/settings.yml) file.
-1.  If not already updated, uncomment the `name` and `description` properties and set the values to what you specified when you requested the repo.
-
-### Update the Terraform files
-
-Implement the logic for your module by updating the `main.tf`, `version.tf`, `variables.tf`, and `outputs.tf` Terraform files. For more information, see [Creating Terraform on IBM Cloud templates](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-create-tf-config).
-
-### Create examples and tests
-
-Add one or more examples in the `examples` directory that consume your new module, and configure tests for them in the `tests` directory. For more information about tests, see [Tests](https://terraform-ibm-modules.github.io/documentation/#/tests).
-
-### Update the content in the readme file
-
-After you implement the logic for your module and create examples and tests, update this readme file in your repository by following these steps:
-
-1.  Update the title heading and add a description about your module.
-1.  Update the badge links.
-1.  Remove all the content in this H2 heading section.
-1.  Complete the [Usage](#usage) and [Required IAM access policies](#required-iam-access-policies) sections. The [Examples](#examples) and [Requirements](#requirements) section are populated by a pre-commit hook.
-
-### Commit your code and submit your module for review
-
-1.  Before you commit any code, review [Contributing to the IBM Cloud Terraform modules project](https://terraform-ibm-modules.github.io/documentation/#/contribute-module) in the project documentation.
-1.  Create a pull request for review.
-
-### Post-merge steps
-
-After the first PR for your module is merged, follow these post-merge steps:
-
-1.  Create a PR to enable the upgrade test by removing the `t.Skip` line in `tests/pr_test.go`.
-
-<!-- Remove the content in this previous H2 heading -->
-## Reference architectures
-
-<!--
-Add links to any reference architectures for this module.
-(Usually in the `/reference-architectures` directory.)
-See "Reference architecture" in Authoring Guidelines in the public documentation at
-https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=reference-architecture
--->
+The module handles the following resource:
+- Secrets Manager private certificate
 
 ## Usage
 
-<!--
-Add an example of the use of the module in the following code block.
-
-Use real values instead of "var.<var_name>" or other placeholder values
-unless real values don't help users know what to change.
--->
-
 ```hcl
+# Replace "master" with a GIT release version to lock into a specific release
+module "secrets_manager_private_certificate" {
+  source     = "git::https://github.ibm.com/GoldenEye/secrets-manager-private-cert-module?ref=master"
 
+  cert_name             = "example-private-cert"
+  cert_description      = "an example private cert"
+  cert_secrets_group_id = "the secret group ID to place the cert"
+  cert_template         = "name of the cert template to use"
+  cert_common_name      = "goldeneye.appdomain.cloud"
+
+  secrets_manager_guid   = module.secrets_manager.secrets_manager_guid
+  secrets_manager_region = var.region
+}
 ```
 
 ## Required IAM access policies
 
-<!-- PERMISSIONS REQUIRED TO RUN MODULE
-If this module requires permissions, uncomment the following block and update
-the sample permissions, following the format.
-Replace the sample Account and IBM Cloud service names and roles with the
-information in the console at
-Manage > Access (IAM) > Access groups > Access policies.
--->
-
-<!--
 You need the following permissions to run this module.
 
 - Account Management
-    - **Sample Account Service** service
-        - `Editor` platform access
-        - `Manager` service access
-    - IAM Services
-        - **Sample Cloud Service** service
-            - `Administrator` platform access
--->
+  - **IAM Access Groups** service
+      - `Editor` platform access
+  - **IAM Identity** service
+      - `Operator` platform access
+  - **Resource Group** service
+      - `Viewer` platform access
+- IAM Services
+  - **Secrets Manager** service
+      - `Administrator` platform access
+      - `Manager` service access
 
-<!-- NO PERMISSIONS FOR MODULE
-If no permissions are required for the module, uncomment the following
-statement instead the previous block.
--->
+For more information about the access you need to run all the GoldenEye modules, see [GoldenEye IAM permissions](https://github.ibm.com/GoldenEye/documentation/blob/master/goldeneye-iam-permissions.md).
 
-<!-- No permissions are needed to run this module.-->
-<!-- END MODULE HOOK -->
 <!-- BEGIN EXAMPLES HOOK -->
 ## Examples
 
@@ -146,7 +58,8 @@ statement instead the previous block.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.51.0 |
 
 ## Modules
 
@@ -154,15 +67,42 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [ibm_sm_private_certificate.secrets_manager_private_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | Optional, Alternate names for the certificate to be created | `list(string)` | `null` | no |
+| <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | Fully qualified domain name or host domain name for the certificate to be created | `string` | n/a | yes |
+| <a name="input_cert_csr"></a> [cert\_csr](#input\_cert\_csr) | Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally | `string` | `null` | no |
+| <a name="input_cert_custom_metadata"></a> [cert\_custom\_metadata](#input\_cert\_custom\_metadata) | Optional, Custom metadata for the certificate to be created | `map(string)` | <pre>{<br>  "collection_total": 1,<br>  "collection_type": "application/vnd.ibm.secrets-manager.secret+json"<br>}</pre> | no |
+| <a name="input_cert_description"></a> [cert\_description](#input\_cert\_description) | Optional, Extended description of certificate to be created. To protect privacy, do not use personal data, such as name or location, as a description for certificate | `string` | `null` | no |
+| <a name="input_cert_ip_sans"></a> [cert\_ip\_sans](#input\_cert\_ip\_sans) | Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
+| <a name="input_cert_labels"></a> [cert\_labels](#input\_cert\_labels) | Optional, Labels for the certificate to be created | `list(string)` | `[]` | no |
+| <a name="input_cert_name"></a> [cert\_name](#input\_cert\_name) | Name of the certificate to be created in Secrets Manager | `string` | n/a | yes |
+| <a name="input_cert_other_sans"></a> [cert\_other\_sans](#input\_cert\_other\_sans) | Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed\_other\_sans' field in the associated certificate template | `list(string)` | `[]` | no |
+| <a name="input_cert_rotation"></a> [cert\_rotation](#input\_cert\_rotation) | Optional, Rotation policy for the certificate to be created | <pre>object({<br>    auto_rotate = optional(bool)<br>    interval    = optional(number)<br>    unit        = optional(string)<br>  })</pre> | <pre>{<br>  "auto_rotate": true,<br>  "interval": 1,<br>  "unit": "month"<br>}</pre> | no |
+| <a name="input_cert_secrets_group_id"></a> [cert\_secrets\_group\_id](#input\_cert\_secrets\_group\_id) | Optional, Id of Secrets Manager secret group to store the certificate in | `string` | `"default"` | no |
+| <a name="input_cert_template"></a> [cert\_template](#input\_cert\_template) | Name of the certificate template to use | `string` | n/a | yes |
+| <a name="input_cert_ttl"></a> [cert\_ttl](#input\_cert\_ttl) | Optional, Time-to-live (TTL) to assign to a private certificate | `string` | `null` | no |
+| <a name="input_cert_uri_sans"></a> [cert\_uri\_sans](#input\_cert\_uri\_sans) | Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
+| <a name="input_cert_version_custom_metadata"></a> [cert\_version\_custom\_metadata](#input\_cert\_version\_custom\_metadata) | Optional, Custom version metadata for the certificate to be created | `map(string)` | `{}` | no |
+| <a name="input_exclude_cn_from_sans"></a> [exclude\_cn\_from\_sans](#input\_exclude\_cn\_from\_sans) | Optional, Controls whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply | `bool` | `false` | no |
+| <a name="input_private_key_format"></a> [private\_key\_format](#input\_private\_key\_format) | Optional, Format of the generated private key | `string` | `"der"` | no |
+| <a name="input_return_format"></a> [return\_format](#input\_return\_format) | Optional, Format of the returned data | `string` | `"pem"` | no |
+| <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | Secrets Manager GUID | `string` | n/a | yes |
+| <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | Region the Secrets Manager instance is in | `string` | n/a | yes |
+| <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Private certificates secrets manager secret CRN |
+| <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Private certificates secrets manager secret ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- BEGIN CONTRIBUTING HOOK -->
 

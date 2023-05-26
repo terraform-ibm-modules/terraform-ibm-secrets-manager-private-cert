@@ -1,10 +1,11 @@
-module github.com/terraform-ibm-modules/terraform-ibm-module-template
+module github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert
 
 go 1.20
 
 require (
 	github.com/stretchr/testify v1.8.2
 	github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper v1.8.11
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -102,5 +103,4 @@ require (
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

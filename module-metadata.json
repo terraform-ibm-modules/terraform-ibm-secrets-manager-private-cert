@@ -1,12 +1,371 @@
 {
   "path": ".",
-  "variables": {},
-  "outputs": {},
+  "variables": {
+    "cert_alt_names": {
+      "name": "cert_alt_names",
+      "type": "list(string)",
+      "description": "Optional, Alternate names for the certificate to be created",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.alt_names"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 99
+      },
+      "immutable": true,
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
+      }
+    },
+    "cert_common_name": {
+      "name": "cert_common_name",
+      "type": "string",
+      "description": "Fully qualified domain name or host domain name for the certificate to be created",
+      "required": true,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.common_name"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 84
+      },
+      "immutable": true
+    },
+    "cert_csr": {
+      "name": "cert_csr",
+      "type": "string",
+      "description": "Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.csr"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 73
+      },
+      "immutable": true
+    },
+    "cert_custom_metadata": {
+      "name": "cert_custom_metadata",
+      "type": "map(string)",
+      "description": "Optional, Custom metadata for the certificate to be created",
+      "default": {
+        "collection_total": 1,
+        "collection_type": "application/vnd.ibm.secrets-manager.secret+json"
+      },
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.custom_metadata"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 117
+      }
+    },
+    "cert_description": {
+      "name": "cert_description",
+      "type": "string",
+      "description": "Optional, Extended description of certificate to be created. To protect privacy, do not use personal data, such as name or location, as a description for certificate",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.description"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 26
+      }
+    },
+    "cert_ip_sans": {
+      "name": "cert_ip_sans",
+      "type": "string",
+      "description": "Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.ip_sans"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 174
+      },
+      "immutable": true
+    },
+    "cert_labels": {
+      "name": "cert_labels",
+      "type": "list(string)",
+      "description": "Optional, Labels for the certificate to be created",
+      "default": [],
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.labels"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 132
+      },
+      "computed": true,
+      "elem": {
+        "type": "TypeString"
+      }
+    },
+    "cert_name": {
+      "name": "cert_name",
+      "type": "string",
+      "description": "Name of the certificate to be created in Secrets Manager",
+      "required": true,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.name"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 11
+      }
+    },
+    "cert_other_sans": {
+      "name": "cert_other_sans",
+      "type": "list(string)",
+      "description": "Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template",
+      "default": [],
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.other_sans"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 207
+      },
+      "immutable": true,
+      "elem": {
+        "type": "TypeString"
+      }
+    },
+    "cert_rotation": {
+      "name": "cert_rotation",
+      "type": "object({\n    auto_rotate = optional(bool)\n    interval    = optional(number)\n    unit        = optional(string)\n  })",
+      "description": "Optional, Rotation policy for the certificate to be created",
+      "default": {
+        "auto_rotate": true,
+        "interval": 1,
+        "unit": "month"
+      },
+      "pos": {
+        "filename": "variables.tf",
+        "line": 150
+      }
+    },
+    "cert_secrets_group_id": {
+      "name": "cert_secrets_group_id",
+      "type": "string",
+      "description": "Optional, Id of Secrets Manager secret group to store the certificate in",
+      "default": "default",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.secret_group_id"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 42
+      },
+      "immutable": true,
+      "computed": true
+    },
+    "cert_template": {
+      "name": "cert_template",
+      "type": "string",
+      "description": "Name of the certificate template to use",
+      "required": true,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.certificate_template"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 58
+      },
+      "immutable": true
+    },
+    "cert_ttl": {
+      "name": "cert_ttl",
+      "type": "string",
+      "description": "Optional, Time-to-live (TTL) to assign to a private certificate",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.ttl"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 196
+      },
+      "immutable": true
+    },
+    "cert_uri_sans": {
+      "name": "cert_uri_sans",
+      "type": "string",
+      "description": "Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.uri_sans"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 185
+      },
+      "immutable": true
+    },
+    "cert_version_custom_metadata": {
+      "name": "cert_version_custom_metadata",
+      "type": "map(string)",
+      "description": "Optional, Custom version metadata for the certificate to be created",
+      "default": {},
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.version_custom_metadata"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 126
+      }
+    },
+    "exclude_cn_from_sans": {
+      "name": "exclude_cn_from_sans",
+      "type": "bool",
+      "description": "Optional, Controls whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply",
+      "default": false,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.exclude_cn_from_sans"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 233
+      },
+      "immutable": true
+    },
+    "private_key_format": {
+      "name": "private_key_format",
+      "type": "string",
+      "description": "Optional, Format of the generated private key",
+      "default": "der",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.private_key_format"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 223
+      }
+    },
+    "return_format": {
+      "name": "return_format",
+      "type": "string",
+      "description": "Optional, Format of the returned data",
+      "default": "pem",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.format"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 213
+      },
+      "immutable": true
+    },
+    "secrets_manager_guid": {
+      "name": "secrets_manager_guid",
+      "type": "string",
+      "description": "Secrets Manager GUID",
+      "required": true,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.instance_id"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 243
+      },
+      "cloud_data_type": "resource_instance",
+      "immutable": true
+    },
+    "secrets_manager_region": {
+      "name": "secrets_manager_region",
+      "type": "string",
+      "description": "Region the Secrets Manager instance is in",
+      "required": true,
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.region"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 248
+      },
+      "cloud_data_type": "region",
+      "immutable": true,
+      "computed": true
+    },
+    "service_endpoints": {
+      "name": "service_endpoints",
+      "type": "string",
+      "description": "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`",
+      "default": "public",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 253
+      }
+    }
+  },
+  "outputs": {
+    "secret_crn": {
+      "name": "secret_crn",
+      "description": "Private certificates secrets manager secret CRN",
+      "value": "ibm_sm_private_certificate.secrets_manager_private_certificate.crn",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 10
+      },
+      "type": "TypeString",
+      "cloud_data_type": "crn"
+    },
+    "secret_id": {
+      "name": "secret_id",
+      "description": "Private certificates secrets manager secret ID",
+      "value": "ibm_sm_private_certificate.secrets_manager_private_certificate.id",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 5
+      }
+    }
+  },
   "required_core": [
-    "\u003e= 1.0.0"
+    "\u003e= 1.3.0"
   ],
-  "required_providers": {},
-  "managed_resources": {},
+  "required_providers": {
+    "ibm": {
+      "source": "IBM-Cloud/ibm",
+      "version_constraints": [
+        "\u003e= 1.51.0"
+      ]
+    }
+  },
+  "managed_resources": {
+    "ibm_sm_private_certificate.secrets_manager_private_certificate": {
+      "mode": "managed",
+      "type": "ibm_sm_private_certificate",
+      "name": "secrets_manager_private_certificate",
+      "attributes": {
+        "alt_names": "cert_alt_names",
+        "certificate_template": "cert_template",
+        "common_name": "cert_common_name",
+        "csr": "cert_csr",
+        "custom_metadata": "cert_custom_metadata",
+        "description": "cert_description",
+        "exclude_cn_from_sans": "exclude_cn_from_sans",
+        "format": "return_format",
+        "instance_id": "secrets_manager_guid",
+        "ip_sans": "cert_ip_sans",
+        "labels": "cert_labels",
+        "name": "cert_name",
+        "other_sans": "cert_other_sans",
+        "private_key_format": "private_key_format",
+        "region": "secrets_manager_region",
+        "secret_group_id": "cert_secrets_group_id",
+        "ttl": "cert_ttl",
+        "uri_sans": "cert_uri_sans",
+        "version_custom_metadata": "cert_version_custom_metadata"
+      },
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 1
+      }
+    }
+  },
   "data_resources": {},
   "module_calls": {}
 }

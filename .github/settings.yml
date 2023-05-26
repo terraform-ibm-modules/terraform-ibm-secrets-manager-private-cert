@@ -10,16 +10,13 @@ _extends: repo-settings:.github/common-settings-v2.yml
 # repo-specific settings
 #
 repository:
-  # See https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions
+  # See https://github.ibm.com/GoldenEye/documentation/blob/master/authoring-guidelines?id=module-names-and-descriptions
 
   # By changing this field, you rename the repository.
 
-  # Uncomment this name property and set the name to the current repo name.
-  # name: ""
+  name: "terraform-ibm-secrets-manager-private-cert"
 
   # The description is displayed under the repository name on the
   # organization page and in the 'About' section of the repository.
 
-  # Uncomment this description property
-  # and update the description to the current repo description.
-  # description: ""
+  description: "Orders a private certificate secret in a Secrets Manager instance that has the private certificates engine configured"
