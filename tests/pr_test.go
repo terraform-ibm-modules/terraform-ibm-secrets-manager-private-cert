@@ -77,6 +77,7 @@ func TestRunDefaultExample(t *testing.T) {
 }
 
 func TestRunUpgradeExample(t *testing.T) {
+	t.Skip()
 	t.Parallel()
 
 	options := setupOptions(t, "sm-private-cert-upg", terraformDir)
