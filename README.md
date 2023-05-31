@@ -25,7 +25,7 @@ module "secrets_manager_private_certificate" {
   cert_description      = "an example private cert"
   cert_secrets_group_id = "the secret group ID to place the cert"
   cert_template         = "name of the cert template to use"
-  cert_common_name      = "goldeneye.appdomain.cloud"
+  cert_common_name      = "example.com"
 
   secrets_manager_guid   = module.secrets_manager.secrets_manager_guid
   secrets_manager_region = var.region
