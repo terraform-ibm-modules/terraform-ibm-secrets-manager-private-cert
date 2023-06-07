@@ -18,3 +18,4 @@ repository:
   # organization page and in the 'About' section of the repository.
 
   description: "Orders a private certificate secret in a Secrets Manager instance that has the private certificates engine configured"
+  topics: core-team, terraform, ibm-cloud, terraform-module, secrets-manager-private-cert
