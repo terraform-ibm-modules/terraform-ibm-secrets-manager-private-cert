@@ -18,7 +18,8 @@ The module handles the following resource:
 ```hcl
 # Replace "main" with a GIT release version to lock into a specific release
 module "secrets_manager_private_certificate" {
-  source     = "git::https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert?ref=main"
+  source  = "terraform-ibm-modules/secrets-manager-private-cert/ibm"
+  version = "latest" # Replace "latest" with a release version to lock into a specific release
 
   cert_name             = "example-private-cert"
   cert_description      = "an example private cert"
