@@ -55,24 +55,24 @@ You need the following permissions to run this module.
 - [ Default example](examples/default)
 <!-- END EXAMPLES HOOK -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.51.0 |
 
-## Modules
+### Modules
 
 No modules.
 
-## Resources
+### Resources
 
 | Name | Type |
 |------|------|
 | [ibm_sm_private_certificate.secrets_manager_private_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate) | resource |
 
-## Inputs
+### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -98,7 +98,7 @@ No modules.
 | <a name="input_secrets_manager_region"></a> [secrets\_manager\_region](#input\_secrets\_manager\_region) | Region the Secrets Manager instance is in | `string` | n/a | yes |
 | <a name="input_service_endpoints"></a> [service\_endpoints](#input\_service\_endpoints) | Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
