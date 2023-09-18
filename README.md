@@ -1,6 +1,3 @@
-<!-- BEGIN MODULE HOOK -->
-
-<!-- Update the title to match the module name and add a description -->
 # Secrets Manager Private Cert module
 [![Stable (Adopted)](https://img.shields.io/badge/Status-Stable%20(Adopted)-yellowgreen?style=plastic)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -13,10 +10,20 @@ This module creates a private certificate in an existing Secrets Manager instanc
 The module handles the following resource:
 - Secrets Manager private certificate
 
-## Usage
+<!-- Below content is automatically populated via pre-commit hook -->
+<!-- BEGIN OVERVIEW HOOK -->
+## Overview
+* [terraform-ibm-secrets-manager-private-cert](#terraform-ibm-secrets-manager-private-cert)
+* [Examples](./examples)
+    * [Default example](./examples/default)
+* [Contributing](#contributing)
+
+## terraform-ibm-secrets-manager-private-cert
+<!-- END OVERVIEW HOOK -->
+
+### Usage
 
 ```hcl
-# Replace "main" with a GIT release version to lock into a specific release
 module "secrets_manager_private_certificate" {
   source  = "terraform-ibm-modules/secrets-manager-private-cert/ibm"
   version = "latest" # Replace "latest" with a release version to lock into a specific release
@@ -48,12 +55,6 @@ You need the following permissions to run this module.
       - `Administrator` platform access
       - `Manager` service access
 
-<!-- END MODULE HOOK -->
-<!-- BEGIN EXAMPLES HOOK -->
-## Examples
-
-- [ Default example](examples/default)
-<!-- END EXAMPLES HOOK -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ### Requirements
 
@@ -105,7 +106,6 @@ No modules.
 | <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Private certificates secrets manager secret CRN |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Private certificates secrets manager secret ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- BEGIN CONTRIBUTING HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
 ## Contributing
@@ -113,5 +113,3 @@ No modules.
 You can report issues and request features for this module in GitHub issues in the module repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
 
 To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
-<!-- Source for this readme file: https://github.com/terraform-ibm-modules/common-dev-assets/tree/main/module-assets/ci/module-template-automation -->
-<!-- END CONTRIBUTING HOOK -->
