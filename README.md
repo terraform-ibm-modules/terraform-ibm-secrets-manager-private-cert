@@ -1,4 +1,5 @@
 # Secrets Manager Private Cert module
+
 [![Stable (Adopted)](https://img.shields.io/badge/Status-Stable%20(Adopted)-yellowgreen?style=plastic)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/releases/latest)
@@ -17,9 +18,9 @@ The module handles the following resource:
 * [Examples](./examples)
     * [Default example](./examples/default)
 * [Contributing](#contributing)
+<!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-secrets-manager-private-cert
-<!-- END OVERVIEW HOOK -->
 
 ### Usage
 
