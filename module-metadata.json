@@ -292,6 +292,9 @@
       "type": "string",
       "description": "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`",
       "default": "public",
+      "source": [
+        "ibm_sm_private_certificate.secrets_manager_private_certificate.endpoint_type"
+      ],
       "pos": {
         "filename": "variables.tf",
         "line": 253
@@ -343,6 +346,7 @@
         "csr": "cert_csr",
         "custom_metadata": "cert_custom_metadata",
         "description": "cert_description",
+        "endpoint_type": "service_endpoints",
         "exclude_cn_from_sans": "exclude_cn_from_sans",
         "format": "return_format",
         "instance_id": "secrets_manager_guid",

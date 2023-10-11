@@ -18,6 +18,7 @@ resource "ibm_sm_private_certificate" "secrets_manager_private_certificate" {
   format                  = var.return_format
   private_key_format      = var.private_key_format
   exclude_cn_from_sans    = var.exclude_cn_from_sans
+  endpoint_type           = var.service_endpoints
 
   rotation {
     auto_rotate = var.cert_rotation.auto_rotate
