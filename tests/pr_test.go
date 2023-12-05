@@ -60,6 +60,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 			"existing_sm_instance_region": smRegion,
 			"certificate_template_name":   certificateTemplateName,
 		},
+		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
 	})
 
 	return options
