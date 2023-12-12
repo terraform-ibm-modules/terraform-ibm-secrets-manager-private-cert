@@ -156,7 +156,7 @@ variable "cert_rotation" {
   description = "Optional, Rotation policy for the certificate to be created"
   default = {
     auto_rotate = true
-    interval    = 1
+    interval    = 12
     unit        = "month"
   }
 
