@@ -156,7 +156,7 @@ variable "cert_rotation" {
   description = "Optional, Rotation policy for the certificate to be created"
   default = {
     auto_rotate = true
-    interval    = 1
+    interval    = 12
     unit        = "month"
   }
 
@@ -196,7 +196,7 @@ variable "cert_uri_sans" {
 variable "cert_ttl" {
   type        = string
   description = "Optional, Time-to-live (TTL) to assign to a private certificate"
-  default     = null
+  default     = "364d"
 
   validation {
     condition     = var.cert_ttl == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.cert_ttl))

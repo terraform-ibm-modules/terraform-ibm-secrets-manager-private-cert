@@ -42,7 +42,7 @@ module "private_secret_engine" {
   intermediate_ca_name      = var.intermediate_ca_name
   certificate_template_name = var.certificate_template_name
   root_ca_common_name       = "terraform-modules.ibm.com"
-  root_ca_max_ttl           = "8760h"
+  root_ca_max_ttl           = "87600h"
 }
 
 module "secrets_manager_private_certificate" {
