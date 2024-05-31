@@ -24,10 +24,11 @@ module "secrets_manager" {
 
 # Best practice, use a secret group
 resource "ibm_sm_secret_group" "secret_group" {
-  name        = "${var.prefix}-certificates-secret-group"    #checkov:skip=CKV_SECRET_6: does not require high entropy string as is static value
-  description = "secret group used for private certificates" #tfsec:ignore:general-secrets-no-plaintext-exposure
-  region      = local.sm_region
-  instance_id = local.sm_guid
+  name          = "${var.prefix}-certificates-secret-group"    #checkov:skip=CKV_SECRET_6: does not require high entropy string as is static value
+  description   = "secret group used for private certificates" #tfsec:ignore:general-secrets-no-plaintext-exposure
+  region        = local.sm_region
+  instance_id   = local.sm_guid
+  endpoint_type = "private"
 }
 
 module "private_secret_engine" {
