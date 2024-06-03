@@ -17,6 +17,7 @@ The module handles the following resource:
 * [terraform-ibm-secrets-manager-private-cert](#terraform-ibm-secrets-manager-private-cert)
 * [Examples](./examples)
     * [Default example](./examples/default)
+    * [Default example](./examples/private)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
