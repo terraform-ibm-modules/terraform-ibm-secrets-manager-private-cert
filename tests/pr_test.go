@@ -92,7 +92,6 @@ func TestRunUpgradeExample(t *testing.T) {
 func TestPrivateInSchematics(t *testing.T) {
 	t.Parallel()
 
-	const region = "us-south"
 	const testLocation = "examples/private"
 
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
@@ -107,12 +106,13 @@ func TestPrivateInSchematics(t *testing.T) {
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
-		Region:                 region,
 	})
 
 	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
 		{Name: "resource_tags", Value: options.Tags, DataType: "list(string)"},
+		{Name: "region", Value: options.Region, DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
