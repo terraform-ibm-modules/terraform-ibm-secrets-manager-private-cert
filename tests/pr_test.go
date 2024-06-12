@@ -18,6 +18,8 @@ const terraformDir = "examples/default"
 // Define a struct with fields that match the structure of the YAML data
 const yamlLocation = "../common-dev-assets/common-go-assets/common-permanent-resources.yaml"
 
+const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml"
+
 type Config struct {
 	SmGuid                  string `yaml:"secretsManagerGuid"`
 	SmRegion                string `yaml:"secretsManagerRegion"`
@@ -56,7 +58,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 		TerraformDir:       dir,
 		Prefix:             prefix,
 		ResourceGroup:      resourceGroup,
-		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
+		BestRegionYAMLPath: bestRegionYAMLPath,
 		TerraformVars: map[string]interface{}{
 			"existing_sm_instance_guid":   smGuid,
 			"existing_sm_instance_region": smRegion,
@@ -106,6 +108,7 @@ func TestPrivateInSchematics(t *testing.T) {
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
+		BestRegionYAMLPath:     bestRegionYAMLPath,
 	})
 
 	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
