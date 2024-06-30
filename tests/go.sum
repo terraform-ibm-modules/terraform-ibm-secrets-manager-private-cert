@@ -196,6 +196,7 @@ github.com/IBM-Cloud/power-go-client v1.6.0/go.mod h1:0ad5Lcq1utoYVJx0uqooMjCpUa
 github.com/IBM/cloud-databases-go-sdk v0.7.0 h1:prvLebKD1kcIk81D6yRhOr/TWp1VQJGLhGAasQr7RtA=
 github.com/IBM/cloud-databases-go-sdk v0.7.0/go.mod h1:JYucI1PdwqbAd8XGdDAchxzxRP7bxOh1zUnseovHKsc=
 github.com/IBM/go-sdk-core/v5 v5.9.2/go.mod h1:YlOwV9LeuclmT/qi/LAK2AsobbAP42veV0j68/rlZsE=
+github.com/IBM/go-sdk-core/v5 v5.10.2/go.mod h1:WZPFasUzsKab/2mzt29xPcfruSk5js2ywAPwW4VJjdI=
 github.com/IBM/go-sdk-core/v5 v5.17.3 h1:CZSVCKzhQc/hRQZOtuEmi9dlNtWMnxJvOsPtQKP7cZ4=
 github.com/IBM/go-sdk-core/v5 v5.17.3/go.mod h1:GatGZpxlo1KaxiRN6E10/rNgWtUtx1hN/GoHSCaSPKA=
 github.com/IBM/platform-services-go-sdk v0.63.1 h1:F5mZU1hKDHqpZa85twUeSYmM9g9gwNAdja097rfpxJY=
@@ -613,8 +614,8 @@ github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
-github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper v1.35.1 h1:SySJol19JeJ7zhm6Cr+Ibm4WNyXqkkOkP6Lpc8EmwQQ=
-github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper v1.35.1/go.mod h1:MXtQ40V5bbyri3QLE9AhjuJKuwKrGPjC/KmoOUvko6s=
+github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper v1.35.2 h1:u9/jBHL0wSkfZpMejHvWkDwjoRV1z67klF1ezuF7mig=
+github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper v1.35.2/go.mod h1:MXtQ40V5bbyri3QLE9AhjuJKuwKrGPjC/KmoOUvko6s=
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/tmccombs/hcl2json v0.5.0 h1:cT2sXStOzKL06c8ZTf9vh+0N8GKGzV7+9RUaY5/iUP8=
 github.com/tmccombs/hcl2json v0.5.0/go.mod h1:B0ZpBthAKbQur6yZRKrtaqDmYLCvgnwHOBApE0faCpU=
