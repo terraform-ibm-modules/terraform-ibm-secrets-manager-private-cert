@@ -14,11 +14,14 @@ import (
 
 const resourceGroup = "geretain-test-resources"
 const terraformDir = "examples/default"
+const fullyConfigurableDir = "solutions/fully-configurable"
 
 // Define a struct with fields that match the structure of the YAML data
 const yamlLocation = "../common-dev-assets/common-go-assets/common-permanent-resources.yaml"
 
 const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml"
+
+var permanentResources map[string]interface{}
 
 type Config struct {
 	SmGuid                  string `yaml:"secretsManagerGuid"`
@@ -120,4 +123,60 @@ func TestPrivateInSchematics(t *testing.T) {
 
 	err := options.RunSchematicTest()
 	assert.Nil(t, err, "This should not have errored")
+}
+
+func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
+	t.Parallel()
+
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing: t,
+		Prefix:  "sm-pc",
+		TarIncludePatterns: []string{
+			"*.tf",
+			fullyConfigurableDir + "/*.tf",
+		},
+		ResourceGroup:          resourceGroup,
+		TemplateFolder:         fullyConfigurableDir,
+		Tags:                   []string{"test-schematic"},
+		DeleteWorkspaceOnFail:  false,
+		WaitJobCompleteMinutes: 80,
+	})
+
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+	}
+
+	err := options.RunSchematicTest()
+	assert.Nil(t, err, "This should not have errored")
+}
+
+func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
+	t.Parallel()
+
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing: t,
+		Prefix:  "sm-pc-up",
+		TarIncludePatterns: []string{
+			"*.tf",
+			fullyConfigurableDir + "/*.tf",
+		},
+		ResourceGroup:          resourceGroup,
+		TemplateFolder:         fullyConfigurableDir,
+		Tags:                   []string{"test-schematic"},
+		DeleteWorkspaceOnFail:  false,
+		WaitJobCompleteMinutes: 80,
+	})
+
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+	}
+
+	err := options.RunSchematicUpgradeTest()
+	if !options.UpgradeTestSkipped {
+		assert.Nil(t, err, "This should not have errored")
+	}
 }
