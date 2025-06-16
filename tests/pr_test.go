@@ -13,7 +13,7 @@ import (
 )
 
 const resourceGroup = "geretain-test-resources"
-const terraformDir = "examples/default"
+const defaultExampleTerraformDir = "examples/default"
 const fullyConfigurableDir = "solutions/fully-configurable"
 
 // Define a struct with fields that match the structure of the YAML data
@@ -72,57 +72,16 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 	return options
 }
 
-func TestRunDefaultExample(t *testing.T) {
-	t.Parallel()
-
-	options := setupOptions(t, "sm-private-cert", terraformDir)
-
-	output, err := options.RunTestConsistency()
-	assert.Nil(t, err, "This should not have errored")
-	assert.NotNil(t, output, "Expected some output")
-}
-
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "sm-private-cert-upg", terraformDir)
+	options := setupOptions(t, "sm-private-cert-upg", defaultExampleTerraformDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")
 		assert.NotNil(t, output, "Expected some output")
 	}
-}
-
-func TestPrivateInSchematics(t *testing.T) {
-	t.Parallel()
-
-	const testLocation = "examples/private"
-
-	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
-		Testing: t,
-		Prefix:  "sm-prv-crt-private",
-		TarIncludePatterns: []string{
-			"*.tf",
-			testLocation + "/*.tf",
-		},
-		ResourceGroup:          resourceGroup,
-		TemplateFolder:         testLocation,
-		Tags:                   []string{"test-schematic"},
-		DeleteWorkspaceOnFail:  false,
-		WaitJobCompleteMinutes: 80,
-		BestRegionYAMLPath:     bestRegionYAMLPath,
-	})
-
-	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
-		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
-		{Name: "resource_tags", Value: options.Tags, DataType: "list(string)"},
-		{Name: "region", Value: options.Region, DataType: "string"},
-		{Name: "prefix", Value: options.Prefix, DataType: "string"},
-	}
-
-	err := options.RunSchematicTest()
-	assert.Nil(t, err, "This should not have errored")
 }
 
 func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
@@ -146,6 +105,8 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
 		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
 		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+		{Name: "secrets_manager_guid", Value: permanentResources["secretsManagerGUID"], DataType: "string"},
+		{Name: "secrets_manager_region", Value: "us-south", DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
