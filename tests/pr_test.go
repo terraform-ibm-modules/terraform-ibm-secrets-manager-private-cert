@@ -8,9 +8,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
-	"gopkg.in/yaml.v3"
 )
 
 const resourceGroup = "geretain-test-resources"
@@ -24,39 +24,18 @@ const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-regi
 
 var permanentResources map[string]interface{}
 
-type Config struct {
-	SmGuid                  string `yaml:"secretsManagerGuid"`
-	SmRegion                string `yaml:"secretsManagerRegion"`
-	CertificateTemplateName string `yaml:"privateCertTemplateName"`
-}
-
-var smGuid string
-var smRegion string
-var certificateTemplateName string
-
-// TestMain will be run before any parallel tests, used to read data from yaml for use with tests
 func TestMain(m *testing.M) {
-	// Read the YAML file contents
-	data, err := os.ReadFile(yamlLocation)
+
+	var err error
+	permanentResources, err = common.LoadMapFromYaml(yamlLocation)
 	if err != nil {
 		log.Fatal(err)
 	}
-	// Create a struct to hold the YAML data
-	var config Config
-	// Unmarshal the YAML data into the struct
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		log.Fatal(err)
-	}
-	// Parse the SM guid and region from data
-	smGuid = config.SmGuid
-	smRegion = config.SmRegion
-	certificateTemplateName = config.CertificateTemplateName
+
 	os.Exit(m.Run())
 }
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
-
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
 		Testing:            t,
 		TerraformDir:       dir,
@@ -64,9 +43,9 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 		ResourceGroup:      resourceGroup,
 		BestRegionYAMLPath: bestRegionYAMLPath,
 		TerraformVars: map[string]interface{}{
-			"existing_sm_instance_guid":   smGuid,
-			"existing_sm_instance_region": smRegion,
-			"certificate_template_name":   certificateTemplateName,
+			"existing_sm_instance_guid":   permanentResources["secretsManagerGuid"].(string),
+			"existing_sm_instance_region": permanentResources["secretsManagerRegion"].(string),
+			"certificate_template_name":   permanentResources["privateCertTemplateName"].(string),
 		},
 	})
 
@@ -108,11 +87,10 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 		{Name: "prefix", Value: options.Prefix, DataType: "string"},
 		{Name: "cert_template", Value: permanentResources["privateCertTemplateName"], DataType: "string"},
 		{Name: "cert_name", Value: fmt.Sprintf("%s-cert", options.Prefix), DataType: "string"},
-		{Name: "cert_common_name", Value: permanentResources["cePublicCertCommonName"], DataType: "string"},
+		{Name: "cert_common_name", Value: "terraform-modules.ibm.com", DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
-	assert.NotNil(t, permanentResources["privateCertTemplateName"], "cert_template should not be nil")
 	assert.Nil(t, err, "This should not have errored")
 }
 
