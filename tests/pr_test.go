@@ -2,6 +2,7 @@
 package test
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"testing"
@@ -105,11 +106,13 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
 		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
 		{Name: "prefix", Value: options.Prefix, DataType: "string"},
-		{Name: "secrets_manager_guid", Value: permanentResources["secretsManagerGUID"], DataType: "string"},
-		{Name: "secrets_manager_region", Value: "us-south", DataType: "string"},
+		{Name: "cert_template", Value: permanentResources["privateCertTemplateName"], DataType: "string"},
+		{Name: "cert_name", Value: fmt.Sprintf("%s-cert", options.Prefix), DataType: "string"},
+		{Name: "cert_common_name", Value: permanentResources["cePublicCertCommonName"], DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
+	assert.NotNil(t, permanentResources["privateCertTemplateName"], "cert_template should not be nil")
 	assert.Nil(t, err, "This should not have errored")
 }
 
