@@ -40,7 +40,7 @@ variable "prefix" {
 
 variable "cert_name" {
   type        = string
-  description = "Name of the certificate to be created in Secrets Manager"
+  description = "Name of the certificate to be created in Secrets Manager."
 
   validation {
     condition     = length(var.cert_name) > 1 && length(var.cert_name) <= 256
@@ -55,7 +55,7 @@ variable "cert_name" {
 
 variable "cert_description" {
   type        = string
-  description = "Optional, Extended description of certificate to be created. To protect privacy, do not use personal data, such as name or location, as a description for certificate"
+  description = "Extended description of certificate to be created. To protect privacy, do not use personal data, such as name or location, as a description for certificate."
   default     = null
 
   validation {
@@ -71,7 +71,7 @@ variable "cert_description" {
 
 variable "cert_secrets_group_id" {
   type        = string
-  description = "Optional, Id of Secrets Manager secret group to store the certificate in"
+  description = "Id of Secrets Manager secret group to store the certificate in."
   default     = "default"
 
   validation {
@@ -87,7 +87,7 @@ variable "cert_secrets_group_id" {
 
 variable "cert_template" {
   type        = string
-  description = "Name of the certificate template to use"
+  description = "Name of the certificate template to use."
 
   validation {
     condition     = length(var.cert_template) >= 2 && length(var.cert_template) <= 128
@@ -102,7 +102,7 @@ variable "cert_template" {
 
 variable "cert_csr" {
   type        = string
-  description = "Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally"
+  description = "Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally."
   default     = null
 
   validation {
@@ -113,7 +113,7 @@ variable "cert_csr" {
 
 variable "cert_common_name" {
   type        = string
-  description = "Fully qualified domain name or host domain name for the certificate to be created"
+  description = "Fully qualified domain name or host domain name for the certificate to be created."
 
   validation {
     condition     = length(var.cert_common_name) >= 4 && length(var.cert_common_name) <= 128
@@ -128,7 +128,7 @@ variable "cert_common_name" {
 
 variable "cert_alt_names" {
   type        = list(string)
-  description = "Optional, Alternate names for the certificate to be created"
+  description = "Alternate names for the certificate to be created."
   default     = null
 
   validation {
@@ -146,7 +146,7 @@ variable "cert_alt_names" {
 
 variable "cert_custom_metadata" {
   type        = map(string)
-  description = "Optional, Custom metadata for the certificate to be created"
+  description = "Custom metadata for the certificate to be created."
   default = {
     collection_type  = "application/vnd.ibm.secrets-manager.secret+json",
     collection_total = 1
@@ -155,13 +155,13 @@ variable "cert_custom_metadata" {
 
 variable "cert_version_custom_metadata" {
   type        = map(string)
-  description = "Optional, Custom version metadata for the certificate to be created"
+  description = "Custom version metadata for the certificate to be created."
   default     = {}
 }
 
 variable "cert_labels" {
   type        = list(string)
-  description = "Optional, Labels for the certificate to be created"
+  description = "Labels for the certificate to be created."
   default     = []
 
   validation {
@@ -183,7 +183,7 @@ variable "cert_rotation" {
     interval    = optional(number)
     unit        = optional(string)
   })
-  description = "Optional, Rotation policy for the certificate to be created"
+  description = "Rotation policy for the certificate to be created."
   default = {
     auto_rotate = true
     interval    = 12
@@ -197,13 +197,13 @@ variable "cert_rotation" {
 
   validation {
     condition     = contains(["day", "month"], var.cert_rotation.unit)
-    error_message = "The specified rotation unit is not valid. Allowed values are: day, month"
+    error_message = "The specified rotation unit is not valid. Allowed values are: day, month."
   }
 }
 
 variable "cert_ip_sans" {
   type        = string
-  description = "Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list."
   default     = null
 
   validation {
@@ -214,7 +214,7 @@ variable "cert_ip_sans" {
 
 variable "cert_uri_sans" {
   type        = string
-  description = "Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list."
   default     = null
 
   validation {
@@ -225,7 +225,7 @@ variable "cert_uri_sans" {
 
 variable "cert_ttl" {
   type        = string
-  description = "Optional, Time-to-live (TTL) to assign to a private certificate"
+  description = "Time-to-live (TTL) to assign to a private certificate."
   default     = "364d"
 
   validation {
@@ -236,7 +236,7 @@ variable "cert_ttl" {
 
 variable "cert_other_sans" {
   type        = list(string)
-  description = "Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template"
+  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template."
   default     = []
 }
 
@@ -246,29 +246,29 @@ variable "return_format" {
   default     = "pem"
   validation {
     condition     = contains(["pem", "pem_bundle"], var.return_format)
-    error_message = "The specified return_format is not valid. Allowed values are: pem, pem_bundle"
+    error_message = "The specified return_format is not valid. Allowed values are: pem, pem_bundle."
   }
 }
 
 variable "private_key_format" {
   type        = string
-  description = "Optional, Format of the generated private key"
+  description = "Format of the generated private key."
   default     = "der"
   validation {
     condition     = contains(["der", "pkcs8"], var.private_key_format)
-    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8"
+    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8."
   }
 }
 
 variable "exclude_cn_from_sans" {
   type        = bool
-  description = "Optional, Controls whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply"
+  description = "Controls whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply."
   default     = false
 }
 
 variable "service_endpoints" {
   type        = string
-  description = "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
+  description = "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`."
   default     = "private"
   validation {
     condition     = contains(["public", "private"], var.service_endpoints)

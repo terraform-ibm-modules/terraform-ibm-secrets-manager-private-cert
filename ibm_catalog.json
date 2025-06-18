@@ -29,7 +29,7 @@
             "title": "Creates a private certificate template.",
             "description": "Creates and manages a private certificate in an existing Secrets Manager instance that has a configured Private Certificate Engine."
           }
-          
+
         ],
         "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
         "flavors": [
@@ -166,7 +166,7 @@
               {
                 "key": "cert_other_sans"
               }
-            ],  
+            ],
             "iam_permissions": [
             {
               "role_crns": [
@@ -187,8 +187,8 @@
               ],
               "service_name": "resource-group"
             }
-            
-            
+
+
           ],
             "dependencies": [
               {
