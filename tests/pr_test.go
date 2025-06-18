@@ -96,6 +96,7 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 
 func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 	t.Parallel()
+	CertCommonName := "terraform-modules.ibm.com"
 
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
@@ -115,6 +116,9 @@ func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
 		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
 		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+		{Name: "cert_template", Value: permanentResources["privateCertTemplateName"], DataType: "string"},
+		{Name: "cert_name", Value: fmt.Sprintf("%s-cert", options.Prefix), DataType: "string"},
+		{Name: "cert_common_name", Value: CertCommonName, DataType: "string"},
 	}
 
 	err := options.RunSchematicUpgradeTest()

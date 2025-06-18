@@ -269,7 +269,7 @@ variable "exclude_cn_from_sans" {
 variable "service_endpoints" {
   type        = string
   description = "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
-  default     = "public"
+  default     = "private"
   validation {
     condition     = contains(["public", "private"], var.service_endpoints)
     error_message = "The specified service_endpoints is not a valid selection!"
