@@ -41,6 +41,7 @@ variable "prefix" {
 variable "cert_name" {
   type        = string
   description = "Name of the certificate to be created in Secrets Manager."
+  default     = "cert-name"
 
   validation {
     condition     = length(var.cert_name) > 1 && length(var.cert_name) <= 256
@@ -114,7 +115,7 @@ variable "cert_csr" {
 variable "cert_common_name" {
   type        = string
   description = "Fully qualified domain name or host domain name for the certificate to be created."
-
+  default     = "cert-common-name"
   validation {
     condition     = length(var.cert_common_name) >= 4 && length(var.cert_common_name) <= 128
     error_message = "length of cert_common_name must be >= 4 and <= 128"
