@@ -2,7 +2,7 @@
     "products": [
       {
         "name": "deploy-arch-secrets-manager-private-cert",
-        "label": "Cloud automation for Secrets Manager Private Certificate.",
+        "label": "Cloud automation for Secrets Manager private certificate",
         "product_kind": "solution",
         "tags": [
           "ibm_created",
