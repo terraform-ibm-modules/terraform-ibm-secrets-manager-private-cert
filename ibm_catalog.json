@@ -26,12 +26,12 @@
         "provider_name": "IBM",
         "features": [
           {
-            "title": "Creates a private certificate template.",
+            "title": "Creates a private certificate template",
             "description": "Creates and manages a private certificate in an existing Secrets Manager instance that has a configured Private Certificate Engine."
           }
 
         ],
-        "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
+        "support_details": "This product is in the community registry. As such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
         "flavors": [
           {
             "label": "Fully configurable",
@@ -39,11 +39,10 @@
             "install_type": "fullstack",
             "working_directory": "solutions/fully-configurable",
             "architecture": {
-              "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Certificate.",
               "features": [
                 {
-                  "title": " Private Certificate template",
-                  "description": "Yes"
+                  "title": "Secret Manager Private Certificate",
+                  "description": "This architcture supports creating secrets manager private certificates within a secrets manager instance."
                 }
               ],
               "diagrams": [
@@ -53,7 +52,7 @@
                     "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/reference-architecture/secrets_manager_private_cert.svg",
                     "type": "image/svg+xml"
                   },
-                  "description": "This architcture supports creating secrets manager private certificate within a secrets manager instance."
+                  "description": "This architecture is designed to facilitate the creation and management of private certificates within an existing IBM Cloud Secrets Manager instance that has a configured Private Certificate Engine. The architecture integrates with the Secrets Manager module to provision a secrets manager instance if one is not already available."
                 }
               ]
             },
@@ -176,19 +175,22 @@
                 "crn:v1:bluemix:public:iam::::serviceRole:Administrator",
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
-              "service_name": "secrets-manager"
+              "service_name": "secrets-manager",
+              "notes": "[optional] Required for creating an Secrets Manager instance. 'Manager' access required to create new secret groups."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Operator"
               ],
-              "service_name": "iam-identity"
+              "service_name": "iam-identity",
+              "notes":"[optional] Required if certificate template uses an IAM profile or access config."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
-              "service_name": "resource-group"
+              "service_name": "resource-group",
+              "notes":"Required to read and resolve resource group metadata where the Secrets Manager instance and certificate will be created."
             }
 
 
@@ -207,7 +209,12 @@
                   {
                     "dependency_output": "secrets_manager_crn",
                     "version_input": "existing_secrets_manager_crn"
-                  }
+                  },
+                  {
+                  "dependency_input": "prefix",
+                  "version_input": "prefix",
+                  "reference_version": true
+                }
                 ]
               }
             ],

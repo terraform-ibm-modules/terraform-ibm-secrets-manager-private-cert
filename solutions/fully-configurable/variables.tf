@@ -72,7 +72,7 @@ variable "cert_description" {
 
 variable "cert_secrets_group_id" {
   type        = string
-  description = "Id of Secrets Manager secret group to store the certificate in."
+  description = "ID of Secrets Manager secret group to store the certificate in."
   default     = "default"
 
   validation {
@@ -103,7 +103,7 @@ variable "cert_template" {
 
 variable "cert_csr" {
   type        = string
-  description = "Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally."
+  description = "Certificate Signing Request (CSR) to be used for certificate creation. If this parameter is not included, the CSR that is used to generate the certificate is created internally. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli). "
   default     = null
 
   validation {
