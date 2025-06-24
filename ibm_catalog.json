@@ -20,7 +20,7 @@
           "solution"
         ],
         "short_description": "Creates and configures a Secrets Manager private certificate.",
-        "long_description" : "This deployable architecture is used to create a private certificate within an existing instance of IBM Cloud Secrets Manager. It requires that the Secrets Manager instance is already provisioned and configured with a Private Certificate Engine, which is necessary for managing and issuing private certificates. The module simplifies the process of provisioning certificates by automating the necessary infrastructure steps, ensuring secure and consistent certificate creation aligned with your organization's security policies.",
+        "long_description" : "This deployable architecture is used to create a private certificate within an existing instance of IBM Cloud Secrets Manager. The existing Secrets Manager instance must be configured with a Private Certificate Engine, which is necessary for managing and issuing private certificates. This solution simplifies the process of provisioning certificates by automating the necessary infrastructure steps, ensuring secure and consistent certificate creation aligned with your organization's security policies.",
         "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/blob/main/README.md",
         "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/images/secrets_manager_private_cert.svg",
         "provider_name": "IBM",
