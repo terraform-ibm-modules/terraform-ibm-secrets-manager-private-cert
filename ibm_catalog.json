@@ -41,8 +41,8 @@
             "architecture": {
               "features": [
                 {
-                  "title": "Secret Manager Private Certificate",
-                  "description": "This architcture supports creating secrets manager private certificates within a secrets manager instance."
+                  "title": " ",
+                  "description": "Configured to use IBM secure by default standards, but can be edited to fit your use case."
                 }
               ],
               "diagrams": [
