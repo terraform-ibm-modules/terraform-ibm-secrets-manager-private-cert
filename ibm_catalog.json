@@ -217,7 +217,7 @@
               {
                 "name": "deploy-arch-ibm-secrets-manager",
                 "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
-                "version": "v2.4.0",
+                "version": "v2.6.3",
                 "flavors": ["fully-configurable"],
                 "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
                 "optional": true,
