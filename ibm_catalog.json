@@ -38,8 +38,8 @@
             "description": "Defines the rotation policy for the certificate, including whether auto-rotation is enabled and the interval at which the certificate should be rotated."
           },
           {
-            "title": "Optional integration",
-            "description": "This solution can be integrated with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) to automatically provision a Secrets Manager instance if one does not already exist."
+            "title": "Secrets Manager integration",
+            "description": "This solution provides an optional capability to integrate with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) to automatically provision a Secrets Manager instance if one does not already exist."
           }
         ],
         "support_details": "This product is in the community registry. As such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
