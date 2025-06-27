@@ -201,6 +201,13 @@
             "iam_permissions": [
             {
               "role_crns": [
+                  "crn:v1:bluemix:public:iam::::role:Editor"
+                ],
+              "service_name": "iam-access-groups",
+              "notes": "[optional] Required for managing IAM access groups."
+            },
+            {
+              "role_crns": [
                 "crn:v1:bluemix:public:iam::::serviceRole:Administrator",
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
