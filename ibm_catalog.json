@@ -1,185 +1,186 @@
 {
-    "products": [
-      {
-        "name": "deploy-arch-secrets-manager-private-cert",
-        "label": "Cloud automation for Secrets Manager private certificate",
-        "product_kind": "solution",
-        "tags": [
-          "ibm_created",
-          "target_terraform",
-          "terraform",
-          "solution",
-          "security"
-        ],
-        "keywords": [
-          "Private certificate",
-          "Secrets Manager",
-          "IaC",
-          "infrastructure as code",
-          "terraform",
-          "solution"
-        ],
-        "short_description": "Creates and configures a Secrets Manager private certificate.",
-        "long_description" : "This deployable architecture is used to create a private certificate within an existing instance of IBM Cloud Secrets Manager. The existing Secrets Manager instance must be configured with a Private Certificate Engine, which is necessary for managing and issuing private certificates. This solution simplifies the process of provisioning certificates by automating the necessary infrastructure steps, ensuring secure and consistent certificate creation aligned with your organization's security policies.",
-        "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/blob/main/README.md",
-        "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/images/secrets_manager_private_cert.svg",
-        "provider_name": "IBM",
-        "features": [
-          {
-            "title": "Certificate Template",
-            "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates."
+  "products": [
+    {
+      "name": "deploy-arch-secrets-manager-private-cert",
+      "label": "Cloud automation for Secrets Manager private certificate",
+      "product_kind": "solution",
+      "tags": [
+        "ibm_created",
+        "target_terraform",
+        "terraform",
+        "solution",
+        "security",
+        "converged_infra"
+      ],
+      "keywords": [
+        "Private certificate",
+        "Secrets Manager",
+        "IaC",
+        "infrastructure as code",
+        "terraform",
+        "solution"
+      ],
+      "short_description": "Creates and configures a Secrets Manager private certificate.",
+      "long_description": "This deployable architecture is used to create a private certificate within an existing instance of IBM Cloud Secrets Manager. The existing Secrets Manager instance must be configured with a Private Certificate Engine, which is necessary for managing and issuing private certificates. This solution simplifies the process of provisioning certificates by automating the necessary infrastructure steps, ensuring secure and consistent certificate creation aligned with your organization's security policies.",
+      "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/blob/main/README.md",
+      "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/images/secrets_manager_private_cert.svg",
+      "provider_name": "IBM",
+      "features": [
+        {
+          "title": "Certificate Template",
+          "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates."
+        },
+        {
+          "title": "Certificate Signing Request",
+          "description": "Facilitates the creation of a certificate within IBM Secrets Manager."
+        },
+        {
+          "title": "Certificate Rotation",
+          "description": "Defines the rotation policy for the certificate, including whether auto-rotation is enabled and the interval at which the certificate should be rotated."
+        },
+        {
+          "title": "Secrets Manager integration",
+          "description": "This solution provides an optional capability to integrate with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) to automatically provision a Secrets Manager instance if one does not already exist."
+        }
+      ],
+      "support_details": "This product is in the community registry. As such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
+      "flavors": [
+        {
+          "label": "Fully configurable",
+          "name": "fully-configurable",
+          "install_type": "fullstack",
+          "working_directory": "solutions/fully-configurable",
+          "architecture": {
+            "features": [
+              {
+                "title": " ",
+                "description": "Configured to use IBM secure by default standards, but can be edited to fit your use case."
+              }
+            ],
+            "diagrams": [
+              {
+                "diagram": {
+                  "caption": "Secrets Manager Private Certificate",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/reference-architecture/secrets_manager_private_cert.svg",
+                  "type": "image/svg+xml"
+                },
+                "description": "This deployable architecture automates the creation of a private certificate in an IBM Cloud Secrets Manager instance, making it easier for users to securely manage certificates without manual effort. By integrating seamlessly with IBM Cloud Secrets Manager, this solution ensures that certificates are generated, stored, and maintained in a centralized and secure environment, aligned with enterprise security and compliance needs.<br>  <br>Certificate Rotation Support:<br>You can optionally define a rotation policy by setting auto-rotation, rotation intervals, and units (days, months, etc.). This allows the certificate to be automatically rotated according to your security compliance requirements.<br><br>Secrets Manager Integration:<br>This solution also supports integration with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) instance automatically if one is not already available, enhancing provisioning flexibility in new environments.<br><br>Flexible Certificate Configuration:<br>Users can define all critical certificate attributes such as the certificate name, certificate common name, certificate alternate names , certificate signing request (CSR), certificate labels, certificate custom metadata, and certificate ttl.<br><br>Once deployed, users receive all relevant outputs based on their chosen return format, enabling easy integration of the certificate into their applications or infrastructure. This architecture is ideal for teams looking to simplify certificate management, improve operational efficiency, and maintain high security standards across their cloud workloads."
+              }
+            ]
           },
-          {
-            "title": "Certificate Signing Request",
-            "description": "Facilitates the creation of a certificate within IBM Secrets Manager."
-          },
-          {
-            "title": "Certificate Rotation",
-            "description": "Defines the rotation policy for the certificate, including whether auto-rotation is enabled and the interval at which the certificate should be rotated."
-          },
-          {
-            "title": "Secrets Manager integration",
-            "description": "This solution provides an optional capability to integrate with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) to automatically provision a Secrets Manager instance if one does not already exist."
-          }
-        ],
-        "support_details": "This product is in the community registry. As such support is handled through the originated repo. If you experience issues please open an issue in that repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/issues). Please note this product is not supported via the IBM Cloud Support Center.",
-        "flavors": [
-          {
-            "label": "Fully configurable",
-            "name": "fully-configurable",
-            "install_type": "fullstack",
-            "working_directory": "solutions/fully-configurable",
-            "architecture": {
-              "features": [
+          "configuration": [
+            {
+              "key": "ibmcloud_api_key"
+            },
+            {
+              "key": "existing_secrets_manager_crn",
+              "required": true
+            },
+            {
+              "key": "prefix",
+              "required": true
+            },
+            {
+              "key": "service_endpoints",
+              "options": [
                 {
-                  "title": " ",
-                  "description": "Configured to use IBM secure by default standards, but can be edited to fit your use case."
-                }
-              ],
-              "diagrams": [
+                  "displayname": "private",
+                  "value": "private"
+                },
                 {
-                  "diagram": {
-                    "caption": "Secrets Manager Private Certificate",
-                    "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/reference-architecture/secrets_manager_private_cert.svg",
-                    "type": "image/svg+xml"
-                  },
-                  "description": "This deployable architecture automates the creation of a private certificate in an IBM Cloud Secrets Manager instance, making it easier for users to securely manage certificates without manual effort. By integrating seamlessly with IBM Cloud Secrets Manager, this solution ensures that certificates are generated, stored, and maintained in a centralized and secure environment, aligned with enterprise security and compliance needs.<br>  <br>Certificate Rotation Support:<br>You can optionally define a rotation policy by setting auto-rotation, rotation intervals, and units (days, months, etc.). This allows the certificate to be automatically rotated according to your security compliance requirements.<br><br>Secrets Manager Integration:<br>This solution also supports integration with [Cloud automation for Secrets Manager](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-secrets-manager-6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global) instance automatically if one is not already available, enhancing provisioning flexibility in new environments.<br><br>Flexible Certificate Configuration:<br>Users can define all critical certificate attributes such as the certificate name, certificate common name, certificate alternate names , certificate signing request (CSR), certificate labels, certificate custom metadata, and certificate ttl.<br><br>Once deployed, users receive all relevant outputs based on their chosen return format, enabling easy integration of the certificate into their applications or infrastructure. This architecture is ideal for teams looking to simplify certificate management, improve operational efficiency, and maintain high security standards across their cloud workloads."
+                  "displayname": "public",
+                  "value": "public"
                 }
               ]
             },
-            "configuration": [
-              {
-                "key": "ibmcloud_api_key"
-              },
-              {
-                "key": "existing_secrets_manager_crn",
-                "required": true
-              },
-              {
-                "key": "prefix",
-                "required": true
-              },
-              {
-                "key": "service_endpoints",
-                "options": [
-                  {
-                    "displayname": "private",
-                    "value": "private"
-                  },
-                  {
-                    "displayname": "public",
-                    "value": "public"
-                  }
-                ]
-              },
-              {
-                "key": "cert_name",
-                "required": true
-              },
-              {
-                "key": "cert_description"
-              },
-              {
-                "key": "cert_secrets_group_id"
-              },
-              {
-                "key": "cert_template",
-                "required":true
-              },
-              {
-                "key": "cert_csr"
-              },
-              {
-                "key": "cert_common_name",
-                "required":true
-              },
-              {
-                "key": "cert_alt_names"
-              },
-              {
-                "key": "cert_custom_metadata"
-              },
-              {
-                "key": "cert_version_custom_metadata"
-              },
-              {
-                "key": "cert_labels"
-              },
-              {
-                "key": "return_format",
-                "options": [
-                  {
-                    "displayname": "pem",
-                    "value": "pem"
-                  },
-                  {
-                    "displayname": "pem_bundle",
-                    "value": "pem_bundle"
-                  }
-                ]
-              },
-              {
-                "key": "private_key_format",
-                "options": [
-                  {
-                    "displayname": "der",
-                    "value": "der"
-                  },
-                  {
-                    "displayname": "pkcs8",
-                    "value": "pkcs8"
-                  }
-                ]
-              },
-              {
-                "key": "cert_rotation"
-              },
-              {
-                "key": "cert_ip_sans"
-              },
-              {
-                "key": "cert_uri_sans"
-              },
-              {
-                "key": "exclude_cn_from_sans",
-                "options": [
-                  {
-                    "displayname": "true",
-                    "value": "true"
-                  },
-                  {
-                    "displayname": "false",
-                    "value": "false"
-                  }
-                ]
-              },
-              {
-                "key": "cert_ttl"
-              },
-              {
-                "key": "cert_other_sans"
-              },
-              {
+            {
+              "key": "cert_name",
+              "required": true
+            },
+            {
+              "key": "cert_description"
+            },
+            {
+              "key": "cert_secrets_group_id"
+            },
+            {
+              "key": "cert_template",
+              "required": true
+            },
+            {
+              "key": "cert_csr"
+            },
+            {
+              "key": "cert_common_name",
+              "required": true
+            },
+            {
+              "key": "cert_alt_names"
+            },
+            {
+              "key": "cert_custom_metadata"
+            },
+            {
+              "key": "cert_version_custom_metadata"
+            },
+            {
+              "key": "cert_labels"
+            },
+            {
+              "key": "return_format",
+              "options": [
+                {
+                  "displayname": "pem",
+                  "value": "pem"
+                },
+                {
+                  "displayname": "pem_bundle",
+                  "value": "pem_bundle"
+                }
+              ]
+            },
+            {
+              "key": "private_key_format",
+              "options": [
+                {
+                  "displayname": "der",
+                  "value": "der"
+                },
+                {
+                  "displayname": "pkcs8",
+                  "value": "pkcs8"
+                }
+              ]
+            },
+            {
+              "key": "cert_rotation"
+            },
+            {
+              "key": "cert_ip_sans"
+            },
+            {
+              "key": "cert_uri_sans"
+            },
+            {
+              "key": "exclude_cn_from_sans",
+              "options": [
+                {
+                  "displayname": "true",
+                  "value": "true"
+                },
+                {
+                  "displayname": "false",
+                  "value": "false"
+                }
+              ]
+            },
+            {
+              "key": "cert_ttl"
+            },
+            {
+              "key": "cert_other_sans"
+            },
+            {
               "key": "provider_visibility",
               "hidden": true,
               "options": [
@@ -197,12 +198,12 @@
                 }
               ]
             }
-            ],
-            "iam_permissions": [
+          ],
+          "iam_permissions": [
             {
               "role_crns": [
-                  "crn:v1:bluemix:public:iam::::role:Editor"
-                ],
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
               "service_name": "iam-access-groups",
               "notes": "[optional] Required for managing IAM access groups."
             },
@@ -220,14 +221,14 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "iam-identity",
-              "notes":"[Optional] Required for Cloud automation for account configuration is enabled."
+              "notes": "[Optional] Required for Cloud automation for account configuration is enabled."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
               "service_name": "resource-group",
-              "notes":"Viewer access is required in the resource group you want to provision in."
+              "notes": "Viewer access is required in the resource group you want to provision in."
             },
             {
               "role_crns": [
@@ -270,33 +271,37 @@
               "notes": "[Optional] Required if you are creating/configuring Key Protect instance and keys for encryption."
             }
           ],
-            "dependencies": [
-              {
-                "name": "deploy-arch-ibm-secrets-manager",
-                "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
-                "version": "v2.4.0",
-                "flavors": ["fully-configurable"],
-                "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
-                "optional": true,
-                "on_by_default": true,
-                "ignore_auto_referencing": ["*"],
-                "input_mapping": [
-                  {
-                    "dependency_output": "secrets_manager_crn",
-                    "version_input": "existing_secrets_manager_crn"
-                  },
-                  {
+          "dependencies": [
+            {
+              "name": "deploy-arch-ibm-secrets-manager",
+              "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
+              "version": "v2.4.0",
+              "flavors": [
+                "fully-configurable"
+              ],
+              "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
+              "optional": true,
+              "on_by_default": true,
+              "ignore_auto_referencing": [
+                "*"
+              ],
+              "input_mapping": [
+                {
+                  "dependency_output": "secrets_manager_crn",
+                  "version_input": "existing_secrets_manager_crn"
+                },
+                {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
                   "reference_version": true
                 }
-                ]
-              }
-            ],
-            "dependency_version_2": true,
-            "terraform_version": "1.10.5"
-          }
-        ]
-      }
-    ]
-  }
+              ]
+            }
+          ],
+          "dependency_version_2": true,
+          "terraform_version": "1.10.5"
+        }
+      ]
+    }
+  ]
+}
