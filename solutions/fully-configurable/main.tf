@@ -4,7 +4,7 @@ locals {
 
 module "crn_parser" {
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
-  version = "1.1.0"
+  version = "1.2.0"
   crn     = var.existing_secrets_manager_crn
 }
 
