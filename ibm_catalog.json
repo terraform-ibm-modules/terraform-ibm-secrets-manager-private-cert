@@ -289,7 +289,7 @@
               "required": true,
               "virtual": true,
               "default_value": "template",
-              "description": "The common name of the Certificate Template."
+              "description": "The name of the Certificate Template."
             },
             {
               "key": "template_max_ttl",
@@ -429,7 +429,7 @@
             {
               "name": "deploy-arch-secrets-manager-private-cert-engine",
               "id": "571d2eb7-e416-40a4-aa95-be05e6155af8-global",
-              "version": "v1.6.12",
+              "version": "v1.8.0",
               "flavors": [
                 "fully-configurable"
               ],
