@@ -98,7 +98,7 @@ variable "cert_secrets_group_id" {
 
 variable "cert_template" {
   type        = string
-  description = "Name of the certificate template to use."
+  description = "Name of the existing certificate template to use for creating certificate."
 
   validation {
     condition     = length(var.cert_template) >= 2 && length(var.cert_template) <= 128
