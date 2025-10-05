@@ -80,19 +80,20 @@ variable "cert_description" {
   }
 }
 
-variable "cert_secrets_group_id" {
+variable "cert_secret_group_name" {
+  description = "Name of the secret group in which certificate will be stored. If the group does not exist, a new group will be created with this name."
   type        = string
-  description = "ID of Secrets Manager secret group to store the certificate in."
   default     = "default"
+}
+
+variable "create_secret_group" {
+  description = "Set this value to true to create a new secret group if group provided in `cert_secret_group_name` does not exist already otherwise keep it false."
+  type        = bool
+  default     = false
 
   validation {
-    condition     = var.cert_secrets_group_id == null ? true : length(var.cert_secrets_group_id) >= 7 && length(var.cert_secrets_group_id) <= 36
-    error_message = "length of cert_secrets_group_id must be >= 7 and <= 36"
-  }
-
-  validation {
-    condition     = can(regex("^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$", var.cert_secrets_group_id))
-    error_message = "cert_secrets_group_id match regular expression /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$/"
+    condition     = var.create_secret_group || local.is_existing_group
+    error_message = "Secret group does not exist, but create_secret_group is set to false. Either set create_secret_group to true or ensure the group exists."
   }
 }
 

@@ -123,6 +123,8 @@ func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 		{Name: "cert_template", Value: permanentResources["privateCertTemplateName"], DataType: "string"},
 		{Name: "cert_name", Value: fmt.Sprintf("%s-cert", options.Prefix), DataType: "string"},
 		{Name: "cert_common_name", Value: CertCommonName, DataType: "string"},
+		{Name: "cert_secret_group_name", Value: fmt.Sprintf("%s-%s", options.Prefix, "cert-sg"), DataType: "true"},
+		{Name: "create_secret_group", Value: "true", DataType: "bool"},
 	}
 
 	err := options.RunSchematicUpgradeTest()
