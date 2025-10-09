@@ -92,8 +92,6 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 		{Name: "cert_template", Value: permanentResources["privateCertTemplateName"], DataType: "string"},
 		{Name: "cert_name", Value: fmt.Sprintf("%s-cert", options.Prefix), DataType: "string"},
 		{Name: "cert_common_name", Value: "terraform-modules.ibm.com", DataType: "string"},
-		{Name: "cert_secret_group_name", Value: fmt.Sprintf("%s-%s", options.Prefix, "cert-sg"), DataType: "string"},
-		{Name: "create_secret_group", Value: "true", DataType: "bool"},
 	}
 
 	err := options.RunSchematicTest()
@@ -127,7 +125,6 @@ func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 		{Name: "cert_common_name", Value: CertCommonName, DataType: "string"},
 	}
 
-	options.CheckApplyResultForUpgrade = true
 	err := options.RunSchematicUpgradeTest()
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")

@@ -172,20 +172,7 @@
               "key": "cert_description"
             },
             {
-              "key": "cert_secret_group_name"
-            },
-            {
-              "key": "create_secret_group",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "existing_cert_secret_group_id"
             },
             {
               "key": "cert_template",

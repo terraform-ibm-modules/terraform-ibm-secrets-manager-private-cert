@@ -80,21 +80,10 @@ variable "cert_description" {
   }
 }
 
-variable "cert_secret_group_name" {
-  description = "Name of the secret group in which certificate will be stored. If the group does not exist, a new group will be created with this name."
+variable "existing_cert_secret_group_id" {
+  description = "ID of the secret group in which certificate will be stored. If null value is passed, a new group will be created with name `secret-group`.  If a prefix input variable is specified, the prefix is added to the name in the <prefix>-secret-group format."
   type        = string
-  default     = "default"
-}
-
-variable "create_secret_group" {
-  description = "Set this value to true to create a new secret group if group provided in `cert_secret_group_name` does not exist already otherwise keep it false."
-  type        = bool
-  default     = false
-
-  validation {
-    condition     = var.create_secret_group || local.is_existing_group
-    error_message = "Secret group does not exist, but create_secret_group is set to false. Either set create_secret_group to true or ensure the group exists."
-  }
+  default     = null
 }
 
 variable "cert_template" {
