@@ -172,7 +172,7 @@
               "key": "cert_description"
             },
             {
-              "key": "existing_cert_secret_group_id"
+              "key": "cert_secret_group_id"
             },
             {
               "key": "cert_template",

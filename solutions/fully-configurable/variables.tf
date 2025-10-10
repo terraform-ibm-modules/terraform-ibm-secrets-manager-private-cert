@@ -80,10 +80,20 @@ variable "cert_description" {
   }
 }
 
-variable "existing_cert_secret_group_id" {
-  description = "ID of the secret group in which certificate will be stored. If null value is passed, a new group will be created with name `secret-group`.  If a prefix input variable is specified, the prefix is added to the name in the <prefix>-secret-group format."
+variable "cert_secret_group_id" {
+  description = "ID of the secret group in which certificate will be stored. If a null value is passed, a new secret group called `secret-group` or of the format <prefix>-secret-group will be created."
   type        = string
   default     = null
+
+  validation {
+    condition     = var.cert_secret_group_id == null ? true : length(var.cert_secret_group_id) >= 7 && length(var.cert_secret_group_id) <= 36
+    error_message = "length of cert_secrets_group_id must be >= 7 and <= 36"
+  }
+
+  validation {
+    condition     = var.cert_secret_group_id == null ? true : can(regex("^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$", var.cert_secret_group_id))
+    error_message = "cert_secrets_group_id match regular expression /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$/"
+  }
 }
 
 variable "cert_template" {
