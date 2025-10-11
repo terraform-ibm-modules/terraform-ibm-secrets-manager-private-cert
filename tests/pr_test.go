@@ -7,7 +7,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/IBM/go-sdk-core/core"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/cloudinfo"
@@ -136,11 +135,10 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 	t.Parallel()
 
 	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
-		Testing:               t,
-		Prefix:                "sm-priv-cert",
-		ResourceGroup:         resourceGroup,
-		OverrideInputMappings: core.BoolPtr(true),
-		QuietMode:             false, // Suppress logs except on failure
+		Testing:       t,
+		Prefix:        "sm-priv-cert",
+		ResourceGroup: resourceGroup,
+		QuietMode:     false, // Suppress logs except on failure
 	})
 
 	options.AddonConfig = cloudinfo.NewAddonConfigTerraform(
