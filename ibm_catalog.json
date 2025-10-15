@@ -180,24 +180,66 @@
             },
             {
               "key": "cert_name",
-              "required": true
+              "required": true,
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "cert_name must be 2 to 256 chars, start and end with alphanumeric or underscore, and only contain word characters, dots, or dashes.",
+                  "value": "^\\w[\\w\\-.]{0,254}\\w$"
+                }
+              ]
             },
             {
-              "key": "cert_description"
+              "key": "cert_description",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_description' is not valid.",
+                  "value": "^(?:$|__NULL__|.{1,1024})$"
+                }
+              ]
             },
             {
-              "key": "cert_secrets_group_id"
+              "key": "cert_secrets_group_id",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_secrets_group_id' is not valid.",
+                  "value": "^$|^__NULL__$|^(?:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$"
+                }
+              ]
             },
             {
               "key": "cert_template",
-              "required": true
+              "required": true,
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_template' is not valid.",
+                  "value": "^(?:$|__NULL__|(?=.{2,128}$)[A-Za-z0-9][A-Za-z0-9]*(?:_?-?\\.?[A-Za-z0-9]+)*)$"
+                }
+              ]
             },
             {
-              "key": "cert_csr"
+              "key": "cert_csr",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_csr' is not valid.",
+                  "value": "^__NULL__$|^(-{5}BEGIN.+?-{5}[\\s\\S]+-{5}END.+?-{5})$"
+                }
+              ]
             },
             {
               "key": "cert_common_name",
-              "required": true
+              "required": true,
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_common_name' is not valid.",
+                  "value": "^__NULL__$|^(?=.{4,128}$).+$"
+                }
+              ]
             },
             {
               "key": "cert_alt_names"
@@ -260,7 +302,14 @@
               ]
             },
             {
-              "key": "cert_ttl"
+              "key": "cert_ttl",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'cert_ttl' is not valid.",
+                  "value": "^__NULL__$|^[0-9]+[s,m,h,d]{0,1}$"
+                }
+              ]
             },
             {
               "key": "cert_other_sans"
