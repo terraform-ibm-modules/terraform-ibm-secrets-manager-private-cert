@@ -411,7 +411,7 @@
             {
               "name": "deploy-arch-secrets-manager-private-cert-engine",
               "id": "571d2eb7-e416-40a4-aa95-be05e6155af8-global",
-              "version": "v1.10.0",
+              "version": "v1.10.1",
               "flavors": [
                 "fully-configurable"
               ],
@@ -438,9 +438,8 @@
                   "reference_version": true
                 },
                 {
-                  "dependency_input": "existing_secrets_manager_crn",
-                  "version_input": "existing_secrets_manager_crn",
-                  "reference_version": true
+                  "dependency_output": "secrets_manager_crn",
+                  "version_input": "existing_secrets_manager_crn"
                 },
                 {
                   "dependency_input": "secrets_manager_service_plan",
