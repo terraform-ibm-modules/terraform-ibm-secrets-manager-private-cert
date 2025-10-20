@@ -146,7 +146,6 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		"deploy-arch-secrets-manager-private-cert",
 		"fully-configurable",
 		map[string]interface{}{
-			"prefix":                       options.Prefix,
 			"secrets_manager_region":       "eu-de",
 			"secrets_manager_service_plan": "trial",
 		},
