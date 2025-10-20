@@ -78,7 +78,32 @@
             },
             {
               "key": "prefix",
-              "required": true
+              "default_value": "dev",
+              "random_string": {
+                "length": 4
+              },
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "Prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It must not end with a hyphen('-'), and cannot contain consecutive hyphens ('--'). It should not exceed 16 characters.",
+                  "value": "^$|^__NULL__$|^[a-z](?!.*--)(?:[a-z0-9-]{0,14}[a-z0-9])?$"
+                }
+              ]
+            },
+            {
+              "key": "existing_resource_group_name",
+              "display_name": "resource_group",
+              "custom_config": {
+                "type": "resource_group",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "identifier": "rg_name"
+                }
+              },
+              "default_value": "Default",
+              "description": "The name of an existing resource group to provision the resources. [Learn more](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui#create_rgs) about how to create a resource group.",
+              "virtual": true
             },
             {
               "key": "secrets_manager_region",
@@ -336,14 +361,6 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Operator",
-                "crn:v1:bluemix:public:iam::::role:Administrator"
-              ],
-              "service_name": "iam-identity",
-              "notes": "[Optional] Required for Cloud automation for account configuration is enabled."
-            },
-            {
-              "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
               "service_name": "resource-group",
@@ -363,7 +380,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "sysdig-monitor",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Monitoring."
+              "notes": "[Optional] Required if configuring a Cloud Monitoring instance."
             },
             {
               "role_crns": [
@@ -371,7 +388,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "logs",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture which sets up Cloud Logs."
+              "notes": "[Optional] Required if configuring a Cloud Logs instance."
             },
             {
               "role_crns": [
@@ -392,44 +409,9 @@
           ],
           "dependencies": [
             {
-              "name": "deploy-arch-ibm-secrets-manager",
-              "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
-              "version": "v2.10.0",
-              "flavors": [
-                "fully-configurable"
-              ],
-              "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
-              "optional": true,
-              "on_by_default": true,
-              "ignore_auto_referencing": [
-                "*"
-              ],
-              "input_mapping": [
-                {
-                  "dependency_input": "prefix",
-                  "version_input": "prefix",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "region",
-                  "version_input": "secrets_manager_region",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "service_plan",
-                  "version_input": "secrets_manager_service_plan",
-                  "reference_version": true
-                },
-                {
-                  "dependency_output": "secrets_manager_crn",
-                  "version_input": "existing_secrets_manager_crn"
-                }
-              ]
-            },
-            {
               "name": "deploy-arch-secrets-manager-private-cert-engine",
               "id": "571d2eb7-e416-40a4-aa95-be05e6155af8-global",
-              "version": "v1.8.0",
+              "version": "TBC",
               "flavors": [
                 "fully-configurable"
               ],
@@ -443,6 +425,11 @@
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
+                  "reference_version": true
+                },
+                {
+                  "dependency_input": "existing_resource_group_name",
+                  "version_input": "existing_resource_group_name",
                   "reference_version": true
                 },
                 {
