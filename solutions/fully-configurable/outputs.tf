@@ -20,12 +20,12 @@ output "secrets_manager_crn" {
 
 
 output "next_steps_text" {
-  value       = "Your Private Certificate is ready."
+  value       = "Your Private Certificates are ready."
   description = "Next steps text"
 }
 
 output "next_step_primary_label" {
-  value       = "Go to Secret Manager instance"
+  value       = "View Private Certificates"
   description = "Primary label"
 }
 
