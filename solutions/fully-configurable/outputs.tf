@@ -33,5 +33,3 @@ output "next_step_primary_url" {
   value       = "https://cloud.ibm.com/services/secrets-manager/${var.existing_secrets_manager_crn}?paneId=privateCertificates#/privateCertificates"
   description = "Primary URL"
 }
-
-
