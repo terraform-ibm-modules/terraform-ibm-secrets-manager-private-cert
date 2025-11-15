@@ -250,12 +250,12 @@ variable "secrets_manager_region" {
   description = "Region the Secrets Manager instance is in"
 }
 
-variable "service_endpoints" {
+variable "endpoint_type" {
   type        = string
-  description = "Service endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
+  description = "The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
   default     = "public"
   validation {
-    condition     = contains(["public", "private"], var.service_endpoints)
-    error_message = "The specified service_endpoints is not a valid selection!"
+    condition     = contains(["public", "private"], var.endpoint_type)
+    error_message = "The specified endpoint_type is not a valid selection!"
   }
 }

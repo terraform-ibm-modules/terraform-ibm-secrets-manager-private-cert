@@ -19,7 +19,7 @@ module "secret_group" {
   secrets_manager_guid     = local.existing_secrets_manager_guid
   secret_group_name        = local.cert_secret_group_name
   secret_group_description = "Secret group for storing private certificate"
-  endpoint_type            = var.service_endpoints
+  endpoint_type            = var.endpoint_type
 }
 
 module "secrets_manager_private_cert" {
@@ -46,5 +46,5 @@ module "secrets_manager_private_cert" {
   return_format                = var.return_format
   private_key_format           = var.private_key_format
   exclude_cn_from_sans         = var.exclude_cn_from_sans
-  service_endpoints            = var.service_endpoints
+  endpoint_type                = var.endpoint_type
 }

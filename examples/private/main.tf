@@ -57,5 +57,5 @@ module "secrets_manager_private_certificate" {
   cert_common_name       = "terraform-modules.ibm.com"
   secrets_manager_guid   = local.sm_guid
   secrets_manager_region = local.sm_region
-  service_endpoints      = "private"
+  endpoint_type          = "private"
 }
