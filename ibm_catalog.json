@@ -201,6 +201,22 @@
             },
             {
               "key": "cert_secrets_group_id",
+              "custom_config": {
+                "type": "secret_group",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "valueType": "id"
+                },
+                "associations": {
+                  "parameters": [
+                    {
+                      "name": "existing_secrets_manager_crn",
+                      "optionsRefresh": true
+                    }
+                  ]
+                }
+              },
               "value_constraints": [
                 {
                   "type": "regex",
