@@ -1,16 +1,25 @@
 locals {
-  prefix = var.prefix != null && trimspace(var.prefix) != "" ? "${trimspace(var.prefix)}-" : ""
+  prefix                          = var.prefix != null && trimspace(var.prefix) != "" ? "${trimspace(var.prefix)}-" : ""
+  cert_secret_group_name          = "${local.prefix}secrets-group"
+  existing_secrets_manager_guid   = module.crn_parser.service_instance
+  existing_secrets_manager_region = module.crn_parser.region
 }
 
 module "crn_parser" {
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
-  version = "1.2.0"
+  version = "1.3.0"
   crn     = var.existing_secrets_manager_crn
 }
 
-locals {
-  existing_secrets_manager_guid   = module.crn_parser.service_instance
-  existing_secrets_manager_region = module.crn_parser.region
+module "secret_group" {
+  count                    = var.cert_secrets_group_id == null ? 1 : 0
+  source                   = "terraform-ibm-modules/secrets-manager-secret-group/ibm"
+  version                  = "1.3.17"
+  region                   = local.existing_secrets_manager_region
+  secrets_manager_guid     = local.existing_secrets_manager_guid
+  secret_group_name        = local.cert_secret_group_name
+  secret_group_description = "Secret group for storing private certificate"
+  endpoint_type            = var.service_endpoints
 }
 
 module "secrets_manager_private_cert" {
@@ -22,7 +31,7 @@ module "secrets_manager_private_cert" {
   cert_name                    = "${local.prefix}${var.cert_name}"
   cert_template                = var.cert_template
   cert_common_name             = var.cert_common_name
-  cert_secrets_group_id        = var.cert_secrets_group_id
+  cert_secrets_group_id        = var.cert_secrets_group_id != null ? var.cert_secrets_group_id : module.secret_group[0].secret_group_id
   cert_description             = var.cert_description
   cert_csr                     = var.cert_csr
   cert_custom_metadata         = var.cert_custom_metadata
