@@ -75,7 +75,6 @@
             {
               "key": "existing_secrets_manager_crn",
               "type": "string",
-              "default_value": "",
               "required": true,
               "custom_config": {
                 "type": "platform_resource",
@@ -211,8 +210,6 @@
             {
               "key": "cert_secrets_group_id",
               "type": "string",
-              "default_value": "",
-              "description": "ID of the secret group in which certificate will be stored",
               "required": false,
               "custom_config": {
                 "type": "secret_group",
