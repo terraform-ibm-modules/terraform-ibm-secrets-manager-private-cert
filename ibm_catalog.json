@@ -224,7 +224,7 @@
                 "associations": {
                   "parameters": [
                     {
-                      "name": "secret_manager_instance",
+                      "name": "existing_secrets_manager_crn",
                       "optionsRefresh": true
                     }
                   ]
