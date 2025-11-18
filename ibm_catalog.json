@@ -79,7 +79,7 @@
                 {
                   "type": "regex",
                   "description": "The value provided for 'existing_secrets_manager_crn' is not valid.",
-                  "value": "^__NULL__$|^crn:(.*:){3}secrets-manager:(.*:){2}[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}::$"
+                  "value": "^__NULL__$|^crn:v\\d:(.*:){2}secrets-manager:(.*:)([aos]\\/[\\w_\\-]+):[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}::$"
                 }
               ]
             },
@@ -212,7 +212,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_description' is not valid.",
+                  "description": "The value provided for 'cert_description' must be null or match /(.*?)/ and have length <= 1024.",
                   "value": "^(?:$|__NULL__|.{1,1024})$"
                 }
               ]
@@ -222,7 +222,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_secrets_group_id' is not valid.",
+                  "description": "The value provided for 'cert_secrets_group_id' must be null or match the regular expression /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$/ and have length >= 7 and <= 36.",
                   "value": "^$|^__NULL__$|^(?:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|default)$"
                 }
               ]
@@ -233,7 +233,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_template' is not valid.",
+                  "description": "The value provided for 'cert_template' must be 2–128 characters long and match /^[A-Za-z0-9][A-Za-z0-9]*(?:_?-?\\.?[A-Za-z0-9]+)*$/.",
                   "value": "^(?:$|__NULL__|(?=.{2,128}$)[A-Za-z0-9][A-Za-z0-9]*(?:_?-?\\.?[A-Za-z0-9]+)*)$"
                 }
               ]
@@ -243,7 +243,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_csr' is not valid.",
+                  "description": "The value provided for 'cert_csr' must match regular expression /^(-{5}BEGIN.+?-{5}[\\s\\S]+-{5}END.+?-{5})$/.",
                   "value": "^__NULL__$|^(-{5}BEGIN.+?-{5}[\\s\\S]+-{5}END.+?-{5})$"
                 }
               ]
@@ -254,7 +254,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_common_name' is not valid.",
+                  "description": "The value provided for 'cert_common_name' must be 4–128 characters long and match regular expression /(.*?)/.",
                   "value": "^__NULL__$|^(?=.{4,128}$).+$"
                 }
               ]
@@ -324,7 +324,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'cert_ttl' is not valid.",
+                  "description": "The value provided for 'cert_ttl' must match regular expression /^[0-9]+[s,m,h,d]{0,1}$/.",
                   "value": "^__NULL__$|^[0-9]+[s,m,h,d]{0,1}$"
                 }
               ]
