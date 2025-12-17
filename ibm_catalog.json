@@ -471,7 +471,7 @@
             {
               "name": "deploy-arch-secrets-manager-private-cert-engine",
               "id": "571d2eb7-e416-40a4-aa95-be05e6155af8-global",
-              "version": "v1.10.5",
+              "version": "v1.12.2",
               "flavors": [
                 "fully-configurable"
               ],
