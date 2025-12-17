@@ -53,6 +53,7 @@
           "label": "Fully configurable",
           "name": "fully-configurable",
           "install_type": "fullstack",
+          "short_description": "Ideal for users who want to provision a private certificate on an existing secrets manager instance with a private certificate engine.",
           "working_directory": "solutions/fully-configurable",
           "architecture": {
             "features": [
@@ -267,10 +268,30 @@
               "key": "cert_alt_names"
             },
             {
-              "key": "cert_custom_metadata"
+              "key": "cert_custom_metadata",
+              "custom_config": {
+                "type": "code_editor",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "supportedLanguages": [
+                    "hcl"
+                  ]
+                }
+              }
             },
             {
-              "key": "cert_version_custom_metadata"
+              "key": "cert_version_custom_metadata",
+              "custom_config": {
+                "type": "code_editor",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "supportedLanguages": [
+                    "hcl"
+                  ]
+                }
+              }
             },
             {
               "key": "cert_labels"
