@@ -7,14 +7,14 @@ locals {
 
 module "crn_parser" {
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
-  version = "1.3.0"
+  version = "1.3.5"
   crn     = var.existing_secrets_manager_crn
 }
 
 module "secret_group" {
   count                    = var.cert_secrets_group_id == null ? 1 : 0
   source                   = "terraform-ibm-modules/secrets-manager-secret-group/ibm"
-  version                  = "1.3.19"
+  version                  = "1.3.28"
   region                   = local.existing_secrets_manager_region
   secrets_manager_guid     = local.existing_secrets_manager_guid
   secret_group_name        = local.cert_secret_group_name
