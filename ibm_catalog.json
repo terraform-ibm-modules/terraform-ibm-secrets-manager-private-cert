@@ -53,6 +53,7 @@
           "label": "Fully configurable",
           "name": "fully-configurable",
           "install_type": "fullstack",
+          "short_description": "Ideal for users who want to provision a private certificate on an existing secrets manager instance with a private certificate engine.",
           "working_directory": "solutions/fully-configurable",
           "architecture": {
             "features": [
