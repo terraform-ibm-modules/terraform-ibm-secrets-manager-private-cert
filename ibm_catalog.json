@@ -121,6 +121,7 @@
               "key": "secrets_manager_region",
               "required": true,
               "virtual": true,
+              "default_value": "us-south",
               "description": "The region to provision a new Secrets Manager instance in.",
               "custom_config": {
                 "type": "region",
