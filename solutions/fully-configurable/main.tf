@@ -14,7 +14,7 @@ module "crn_parser" {
 module "secret_group" {
   count                    = var.cert_secrets_group_id == null ? 1 : 0
   source                   = "terraform-ibm-modules/secrets-manager-secret-group/ibm"
-  version                  = "1.3.36"
+  version                  = "1.3.37"
   region                   = local.existing_secrets_manager_region
   secrets_manager_guid     = local.existing_secrets_manager_guid
   secret_group_name        = local.cert_secret_group_name
