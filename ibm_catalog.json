@@ -23,7 +23,6 @@
       "short_description": "Creates and configures a Secrets Manager private certificate.",
       "long_description": "This deployable architecture is used to create a private certificate within an existing instance of IBM Cloud Secrets Manager. The existing Secrets Manager instance must be configured with a Private Certificate Engine, which is necessary for managing and issuing private certificates. This solution simplifies the process of provisioning certificates by automating the necessary infrastructure steps, ensuring secure and consistent certificate creation aligned with your organization's security policies. \n\nLeverage [Terraform IBM Modules](https://github.com/terraform-ibm-modules) to shape and scale your solutions. You can integrate Terraform IBM Modules (TIM) to extend functionality and design a solution tailored to your environment and operations needs. These modules offer reusable, customizable elements that follow IBM Cloud's recommended practices. You can access the [source code and documentation](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert) and use it to extend your current architecture or create new solutions.",
       "offering_docs_url": "https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-about-tim",
-      "release_notes_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/releases",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/main/images/secrets_manager_private_cert.svg",
       "provider_name": "IBM",
       "features": [
@@ -56,6 +55,7 @@
           "install_type": "fullstack",
           "short_description": "Ideal for users who want to provision a private certificate on an existing secrets manager instance with a private certificate engine.",
           "working_directory": "solutions/fully-configurable",
+          "release_notes_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/releases",
           "architecture": {
             "features": [
               {
