@@ -5,7 +5,7 @@ locals {
 
 module "resource_group" {
   source  = "terraform-ibm-modules/resource-group/ibm"
-  version = "1.4.7"
+  version = "1.4.8"
   # if an existing resource group is not set (null) create a new one using prefix
   resource_group_name          = var.resource_group == null ? "${var.prefix}-resource-group" : null
   existing_resource_group_name = var.resource_group
@@ -13,7 +13,7 @@ module "resource_group" {
 
 module "secrets_manager" {
   source               = "terraform-ibm-modules/secrets-manager/ibm"
-  version              = "2.12.25"
+  version              = "2.13.3"
   resource_group_id    = module.resource_group.resource_group_id
   region               = var.region
   secrets_manager_name = "${var.prefix}-secrets-manager"
@@ -35,7 +35,7 @@ resource "ibm_sm_secret_group" "secret_group" {
 module "private_secret_engine" {
   count                     = var.existing_sm_instance_guid == null ? 1 : 0
   source                    = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
-  version                   = "1.12.12"
+  version                   = "1.13.3"
   secrets_manager_guid      = local.sm_guid
   region                    = local.sm_region
   root_ca_name              = var.root_ca_name
