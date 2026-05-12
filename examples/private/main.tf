@@ -20,7 +20,7 @@ module "secrets_manager" {
   sm_service_plan      = "trial"
   allowed_network      = "private-only"
   endpoint_type        = "private"
-  sm_tags              = var.resource_tags
+  resource_tags        = var.resource_tags
 }
 
 # Best practice, use a secret group

@@ -19,7 +19,7 @@ module "secrets_manager" {
   secrets_manager_name = "${var.prefix}-secrets-manager"
   sm_service_plan      = "trial"
   allowed_network      = "public-and-private"
-  sm_tags              = var.resource_tags
+  resource_tags        = var.resource_tags
 }
 
 # Best practice, use a secret group
