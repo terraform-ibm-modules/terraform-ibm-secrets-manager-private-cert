@@ -33,17 +33,21 @@ resource "ibm_sm_secret_group" "secret_group" {
 }
 
 module "private_secret_engine" {
-  count                     = var.existing_sm_instance_guid == null ? 1 : 0
-  source                    = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
-  version                   = "2.0.2"
-  secrets_manager_guid      = local.sm_guid
-  region                    = local.sm_region
-  root_ca_name              = var.root_ca_name
-  intermediate_ca_name      = var.intermediate_ca_name
-  certificate_template_name = var.certificate_template_name
-  root_ca_common_name       = "terraform-modules.ibm.com"
-  root_ca_max_ttl           = "87600h"
-  endpoint_type             = "private"
+  count                = var.existing_sm_instance_guid == null ? 1 : 0
+  source               = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
+  version              = "2.0.2"
+  secrets_manager_guid = local.sm_guid
+  region               = local.sm_region
+  root_ca_name         = var.root_ca_name
+  intermediate_ca_name = var.intermediate_ca_name
+  root_ca_common_name  = "terraform-modules.ibm.com"
+  root_ca_max_ttl      = "87600h"
+  endpoint_type        = "private"
+  certificate_templates = [
+    {
+      name = var.certificate_template_name
+    }
+  ]
 }
 
 module "secrets_manager_private_certificate" {
