@@ -14,11 +14,28 @@ The module handles the following resource:
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
-* [terraform-ibm-secrets-manager-private-cert](#terraform-ibm-secrets-manager-private-cert)
-* [Examples](./examples)
-    * <div style="display: inline-block;"><a href="./examples/default">Default example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=smpc-default-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/default" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
-    * <div style="display: inline-block;"><a href="./examples/private">Private-Only Secret Manager example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=smpc-private-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/private" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
-* [Contributing](#contributing)
+<ul>
+  <li><a href="#terraform-ibm-secrets-manager-private-cert">terraform-ibm-secrets-manager-private-cert</a></li>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples">Examples</a>
+    <ul>
+      <li>
+        <a href="https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/default">Default example</a>
+        <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=secrets-manager-private-cert-default-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/default"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
+      </li>
+      <li>
+        <a href="https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/private">Private-Only Secret Manager example</a>
+        <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=secrets-manager-private-cert-private-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/examples/private"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
+      </li>
+    </ul>
+    ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
+  </li>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/solutions">Deployable Architectures</a>
+    <ul>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert/tree/main/solutions/fully-configurable">Cloud automation for Secrets Manager private certificate (Fully configurable)</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributing">Contributing</a></li>
+</ul>
 <!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-secrets-manager-private-cert
@@ -61,7 +78,7 @@ You need the following permissions to run this module.
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.79.0, <2.0.0 |
 
@@ -72,13 +89,13 @@ No modules.
 ### Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [ibm_sm_private_certificate.secrets_manager_private_certificate](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_cert_alt_names"></a> [cert\_alt\_names](#input\_cert\_alt\_names) | Optional, Alternate names for the certificate to be created | `list(string)` | `null` | no |
 | <a name="input_cert_common_name"></a> [cert\_common\_name](#input\_cert\_common\_name) | Fully qualified domain name or host domain name for the certificate to be created | `string` | n/a | yes |
 | <a name="input_cert_csr"></a> [cert\_csr](#input\_cert\_csr) | Certificate signing request. If you don't include this parameter, the CSR that is used to generate the certificate is created internally | `string` | `null` | no |
@@ -104,7 +121,7 @@ No modules.
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_id"></a> [id](#output\_id) | Private certificates secrets manager secret resource ID |
 | <a name="output_secret_crn"></a> [secret\_crn](#output\_secret\_crn) | Private certificates secrets manager secret CRN |
 | <a name="output_secret_id"></a> [secret\_id](#output\_secret\_id) | Private certificates secrets manager secret unique ID |
