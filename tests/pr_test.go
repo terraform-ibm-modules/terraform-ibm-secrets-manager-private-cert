@@ -149,11 +149,11 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		"fully-configurable",
 		map[string]interface{}{
 			// prefix must be set explicitly: it is shared with the private cert engine dependency,
-			// which names the template "<prefix>-default-cert-template". Without this it defaults to a random value.
+			// which names the template "<prefix>-template". Without this it defaults to a random value.
 			"prefix":                       options.Prefix,
 			"secrets_manager_region":       "eu-de",
 			"secrets_manager_service_plan": "trial",
-			"cert_template":                fmt.Sprintf("%s-default-cert-template", options.Prefix),
+			"cert_template":                fmt.Sprintf("%s-template", options.Prefix),
 		},
 	)
 

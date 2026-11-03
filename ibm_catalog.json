@@ -367,6 +367,23 @@
               "description": "The common name of the Intermediate Certificate Authority."
             },
             {
+              "key": "certificate_templates",
+              "required": true,
+              "virtual": true,
+              "default_value": "[{\"name\": \"template\"}]",
+              "description": "List of certificate templates to create in the private certificate engine. Each template must have a unique name, and the name is prefixed with the `prefix` value in the `<prefix>-<name>` format. The `cert_template` input must match the full name of one of these templates. The default name `template` matches the template name used by earlier versions, so existing deployments are not recreated. You can add up to 10 templates per certificate authority.",
+              "custom_config": {
+                "type": "code_editor",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "supportedLanguages": [
+                    "hcl"
+                  ]
+                }
+              }
+            },
+            {
               "key": "provider_visibility",
               "hidden": true,
               "options": [
@@ -464,6 +481,11 @@
                 "*"
               ],
               "input_mapping": [
+                {
+                  "dependency_input": "certificate_templates",
+                  "version_input": "certificate_templates",
+                  "reference_version": true
+                },
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
