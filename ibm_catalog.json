@@ -367,20 +367,21 @@
               "description": "The common name of the Intermediate Certificate Authority."
             },
             {
-              "key": "certificate_template_name",
-              "type": "string",
+              "key": "certificate_templates",
               "required": true,
               "virtual": true,
-              "default_value": "template",
-              "description": "The name of the Certificate Template."
-            },
-            {
-              "key": "template_max_ttl",
-              "type": "string",
-              "required": true,
-              "virtual": true,
-              "default_value": "8760h",
-              "description": "Max TTL for the certificate template."
+              "default_value": "[{\"name\": \"template\"}]",
+              "description": "The certificate templates to create. Each name is prefixed with `prefix`, and `cert_template` must match one of the full names.",
+              "custom_config": {
+                "type": "code_editor",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "supportedLanguages": [
+                    "hcl"
+                  ]
+                }
+              }
             },
             {
               "key": "provider_visibility",
@@ -469,7 +470,7 @@
             {
               "name": "deploy-arch-secrets-manager-private-cert-engine",
               "id": "571d2eb7-e416-40a4-aa95-be05e6155af8-global",
-              "version": "v1.13.2",
+              "version": "v2.0.12",
               "flavors": [
                 "fully-configurable"
               ],
@@ -480,6 +481,11 @@
                 "*"
               ],
               "input_mapping": [
+                {
+                  "dependency_input": "certificate_templates",
+                  "version_input": "certificate_templates",
+                  "reference_version": true
+                },
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
@@ -523,20 +529,6 @@
                   "dependency_input": "intermediate_ca_common_name",
                   "version_input": "intermediate_ca_common_name",
                   "reference_version": true
-                },
-                {
-                  "dependency_input": "certificate_template_name",
-                  "version_input": "certificate_template_name",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "template_max_ttl",
-                  "version_input": "template_max_ttl",
-                  "reference_version": true
-                },
-                {
-                  "dependency_output": "template_name",
-                  "version_input": "cert_template"
                 }
               ]
             }
