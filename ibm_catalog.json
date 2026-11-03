@@ -371,7 +371,7 @@
               "required": true,
               "virtual": true,
               "default_value": "[{\"name\": \"template\"}]",
-              "description": "List of certificate templates to create in the private certificate engine. Each template must have a unique name, and the name is prefixed with the `prefix` value in the `<prefix>-<name>` format. The `cert_template` input must match the full name of one of these templates. The default name `template` matches the template name used by earlier versions, so existing deployments are not recreated. You can add up to 10 templates per certificate authority.",
+              "description": "The certificate templates to create. Each name is prefixed with `prefix`, and `cert_template` must match one of the full names.",
               "custom_config": {
                 "type": "code_editor",
                 "grouping": "deployment",
