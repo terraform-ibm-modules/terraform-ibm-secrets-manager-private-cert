@@ -367,22 +367,6 @@
               "description": "The common name of the Intermediate Certificate Authority."
             },
             {
-              "key": "certificate_template_name",
-              "type": "string",
-              "required": true,
-              "virtual": true,
-              "default_value": "template",
-              "description": "The name of the Certificate Template."
-            },
-            {
-              "key": "template_max_ttl",
-              "type": "string",
-              "required": true,
-              "virtual": true,
-              "default_value": "8760h",
-              "description": "Max TTL for the certificate template."
-            },
-            {
               "key": "provider_visibility",
               "hidden": true,
               "options": [
@@ -523,20 +507,6 @@
                   "dependency_input": "intermediate_ca_common_name",
                   "version_input": "intermediate_ca_common_name",
                   "reference_version": true
-                },
-                {
-                  "dependency_input": "certificate_template_name",
-                  "version_input": "certificate_template_name",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "template_max_ttl",
-                  "version_input": "template_max_ttl",
-                  "reference_version": true
-                },
-                {
-                  "dependency_output": "template_name",
-                  "version_input": "cert_template"
                 }
               ]
             }

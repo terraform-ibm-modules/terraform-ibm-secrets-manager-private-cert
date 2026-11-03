@@ -150,6 +150,8 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		map[string]interface{}{
 			"secrets_manager_region":       "eu-de",
 			"secrets_manager_service_plan": "trial",
+			// private cert engine v2 creates "<prefix>-default-cert-template" by default
+			"cert_template": fmt.Sprintf("%s-default-cert-template", options.Prefix),
 		},
 	)
 
